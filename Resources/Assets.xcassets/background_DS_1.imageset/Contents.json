@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "BrandonMc_Pop_art_pointillism_illustration_utilizing_Alcohol_In_0628f291-09bc-43e2-883e-5c63b36f4183 2.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "BrandonMc_Pop_art_pointillism_illustration_utilizing_Alcohol_In_0628f291-09bc-43e2-883e-5c63b36f4183 2 (1).jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
