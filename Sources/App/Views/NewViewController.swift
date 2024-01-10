@@ -13,22 +13,26 @@ class NewViewController: UIViewController , Demo{
     
     private lazy var nextButton = UIButton()
     private lazy var titleLabel = UILabel()
-    
+    private var daysWeather:[DayWeather] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-       
-    
         setViews()
-
-        // Do any additional setup after loading the view.
+       
+        
+        
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+      
+       
+    }
+
     func setViews(){
         view.addSubview(nextButton)
         view.addSubview(titleLabel)
         
-        titleLabel.text = "kết quả"
+        
         titleLabel.textColor = .black
         titleLabel.font = UIFont.systemFont(ofSize: 32)
         
