@@ -20,12 +20,7 @@ class NetworkConstants{
        
        public var serverAddress: String {
            get {
-               return "https://api.openweathermap.org/data/2.5/forecast"
+               return "api.openweathermap.org/data/2.5/forecast"
            }
        }
-    public var addressApiContries: String{
-        get{
-            return "https://restcountries.com/v3.1/all"
-        }
-    }
 }

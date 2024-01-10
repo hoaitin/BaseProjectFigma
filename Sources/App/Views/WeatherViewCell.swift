@@ -13,7 +13,6 @@ class WeatherViewCell: UICollectionViewCell {
     private lazy var dayLabel = UILabel()
     private lazy var weatherImage = UIImageView()
     private lazy var temperatureLabel = UILabel()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpView()
@@ -26,11 +25,10 @@ class WeatherViewCell: UICollectionViewCell {
         setUpView()
         setUpConstraints()
     }
-    
-    func setData(weatherData : WeatherData, isC: Bool){
+    func setData(weatherData : WeatherData){
         dayLabel.text = weatherData.getTime()
         weatherImage.image = UIImage(named: weatherData.weather[0].icon)
-        temperatureLabel.text = isC ?weatherData.getTemperatureC():weatherData.getTemperatureF()
+        temperatureLabel.text = weatherData.getTemperatureC()
         
     }
     
@@ -45,8 +43,9 @@ class WeatherViewCell: UICollectionViewCell {
         temperatureLabel.textAlignment = .center
         temperatureLabel.font = UIFont.systemFont(ofSize: 16)
         
+        
+        
     }
-    
     func setUpConstraints(){
         contentView.addSubview(dayLabel)
         contentView.addSubview(weatherImage)
@@ -56,19 +55,22 @@ class WeatherViewCell: UICollectionViewCell {
             $0.centerX.equalToSuperview()
             $0.topMargin.equalToSuperview().offset(5)
             $0.size.equalTo(CGSize(width: 100, height: 30))
+            
         }
-        
         weatherImage.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.top.equalTo(dayLabel.snp.bottom).offset(5)
             $0.size.equalTo(CGSize(width: 50, height: 50))
+            
         }
-        
         temperatureLabel.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.top.equalTo(weatherImage.snp.bottom).offset(5)
             $0.size.equalTo(CGSize(width: 100, height: 30))
+            
         }
+        
+        
         
     }
     

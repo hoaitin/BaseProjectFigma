@@ -15,25 +15,27 @@ class WeatherDataTableViewCell: UITableViewCell{
     private lazy var temMinLabel = UILabel()
     private lazy var temMaxLabel = UILabel()
     
+    
+
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpViews()
         setUpConstraints()
+      
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(dayWeather : DayWeather, isC: Bool){
+    func setData(dayWeather : DayWeather){
         titleDayLabel.text = fomatDayWeek(dt: dayWeather.weatherData[0].dt)
         iconWeatherImage.image = UIImage(named: dayWeather.weatherData[0].weather[0].icon)
-       
-        temMinLabel.text = isC ?dayWeather.getTemperatureCMixOnDay(): dayWeather.getTemperatureFMixOnDay()
-        temMaxLabel.text = isC ?dayWeather.getTemperatureCMaxOnDay(): dayWeather.getTemperatureFMaxOnDay()
-       
+        temMinLabel.text =  dayWeather.getTemperatureCMixOnDay()
+        temMaxLabel.text = dayWeather.getTemperatureCMaxOnDay()
     }
-    
     func setUpViews(){
         self.backgroundColor = .black.withAlphaComponent(0.2)
         
@@ -42,14 +44,19 @@ class WeatherDataTableViewCell: UITableViewCell{
         
         iconWeatherImage.contentMode = .scaleAspectFit
     
+        
+        
         temMinLabel.textColor = .black
         temMinLabel.font = UIFont.systemFont(ofSize: 16)
         
+       
         temMaxLabel.textColor = .black
         temMaxLabel.font = UIFont.systemFont(ofSize: 16)
         
+      
+        
+        
     }
-    
     func setUpConstraints() {
         contentView.addSubview(titleDayLabel)
         contentView.addSubview(temMaxLabel)
@@ -71,7 +78,7 @@ class WeatherDataTableViewCell: UITableViewCell{
         temMaxLabel.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.rightMargin.equalToSuperview().offset(10)
-            $0.size.equalTo(CGSize(width: 80, height: 40))
+            $0.size.equalTo(CGSize(width: 40, height: 40))
         }
         temMinLabel.snp.makeConstraints{
             $0.centerY.equalToSuperview()
@@ -80,7 +87,6 @@ class WeatherDataTableViewCell: UITableViewCell{
         }
        
     }
-    
     func fomatDayWeek(dt: Int) -> String {
         let timestamp = TimeInterval(dt)
         let date = Date(timeIntervalSince1970: timestamp)

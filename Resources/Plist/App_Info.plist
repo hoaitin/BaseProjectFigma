@@ -100,13 +100,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to the camera to recognize text.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>get Location</string>
-	<key>NSLocationAlwaysUsageDescription
-</key>
 	<string>A message explaining why you need the user's location when the app is in use.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>get location</string>
+	<string>A message explaining why you need the user's location when the app is in use.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need to access to your microphone to record audio and convert it into text input.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -323,6 +322,7 @@
 		<string>SF-Pro-Text-Regular.ttf</string>
 		<string>SF-Pro-Text-Semibold.ttf</string>
 		<string>SF-Pro-Text-Heavy.ttf</string>
+		<string>OpenSans_Text.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

@@ -18,15 +18,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: Initialize views
         self.window = UIWindow(frame: UIScreen.main.bounds)
       
-      
-        let nav = UINavigationController(rootViewController: MainViewController())
+        let nav = UINavigationController(rootViewController: SplashViewController())
         nav.setNavigationBarHidden(true, animated: false)
         self.window?.rootViewController = nav
         self.window?.makeKeyAndVisible()
-        
-        // update
-        //
-       
         
         // MARK: Prevent app's screen lock
         UIApplication.shared.isIdleTimerDisabled = true
@@ -34,21 +29,5 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func setLocation(){
-        var locManager = CLLocationManager()
-        locManager.requestWhenInUseAuthorization()
-        
-        var currentLocation: CLLocation!
 
-        if
-           CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-           CLLocationManager.authorizationStatus() ==  .authorizedAlways
-        {
-            currentLocation = locManager.location
-            print("======\(currentLocation.coordinate.longitude)")
-            print("\(currentLocation.coordinate.latitude)")
-        }
-        
-        
-    }
 }
