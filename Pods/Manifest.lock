@@ -1,4 +1,6 @@
 PODS:
+  - Alamofire (5.8.1)
+  - DGActivityIndicatorView (2.1.1)
   - Firebase (10.16.0):
     - Firebase/Core (= 10.16.0)
   - Firebase/Analytics (10.16.0):
@@ -124,6 +126,8 @@ PODS:
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - Alamofire
+  - DGActivityIndicatorView
   - Firebase
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -133,6 +137,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
+    - DGActivityIndicatorView
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -153,6 +159,8 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   Firebase: 25899099b77d255a636e3579c3d9dce10ec150d5
   FirebaseABTesting: 03f0a8b88cf618350527f2c6a2234e29b9c65064
   FirebaseAnalytics: 7b41efc4eba5ff841cc94d5994b5f339361258f4
@@ -172,6 +180,6 @@ SPEC CHECKSUMS:
   R.swift: 0af0d882f49f03711415cb4e5215daa977d8a480
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: d5e3c0af8e5940a0457f7f006145c0b33de03331
+PODFILE CHECKSUM: ae19b2b5cbd3b3f723c714873650d4ed995116ff
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3

@@ -322,7 +322,8 @@
 		<string>SF-Pro-Text-Regular.ttf</string>
 		<string>SF-Pro-Text-Semibold.ttf</string>
 		<string>SF-Pro-Text-Heavy.ttf</string>
-		<string>OpenSans_Text.ttf</string>
+		<string>OpenSans-Text.ttf</string>
+		<string>OpenSans-SemiBold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

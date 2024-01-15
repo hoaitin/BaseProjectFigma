@@ -36,5 +36,117 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "10D9CFFC-7E3D-4EBD-A861-9793597BE253"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/App/Views/HomeMain/HomeCategoryCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "handleDoubleTap(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "10D9CFFC-7E3D-4EBD-A861-9793597BE253 - d72d8741aac370de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BaseProjectApp.HomeCategoryCollectionViewCell.handleDoubleTap(__C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "BaseProjectApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tinnguyen/Documents/GitHub/BaseProjectFigma/Sources/App/Views/HomeMain/HomeCategoryCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "223">
+               </Location>
+               <Location
+                  uuid = "10D9CFFC-7E3D-4EBD-A861-9793597BE253 - d72d8741aac370ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BaseProjectApp.HomeCategoryCollectionViewCell.handleDoubleTap(__C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "BaseProjectApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tinnguyen/Documents/GitHub/BaseProjectFigma/Sources/App/Views/HomeMain/HomeCategoryCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "223">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B88E6A0-C0BA-4322-AF4E-B249268685AF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/App/Views/HomeMain/HomeCategoryCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8B88E6A0-C0BA-4322-AF4E-B249268685AF - 6ec65a7d27debc4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BaseProjectApp.HomeCategoryCollectionViewCell.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "BaseProjectApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tinnguyen/Documents/GitHub/BaseProjectFigma/Sources/App/Views/HomeMain/HomeCategoryCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "1476">
+               </Location>
+               <Location
+                  uuid = "8B88E6A0-C0BA-4322-AF4E-B249268685AF - 6ec65a7d27debc4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BaseProjectApp.HomeCategoryCollectionViewCell.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "BaseProjectApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tinnguyen/Documents/GitHub/BaseProjectFigma/Sources/App/Views/HomeMain/HomeCategoryCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "1182">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE86D52C-3D88-4C3B-8BED-295CE3277D5F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/App/Views/HomeMain/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -41,15 +41,33 @@ struct _R {
     let developmentRegion = "en"
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 60 images.
+  /// This `_R.image` struct is generated, and contains static references to 97 images.
   struct image {
     let bundle: Foundation.Bundle
+
+    /// Image `Frame 492`.
+    var frame492: RswiftResources.ImageResource { .init(name: "Frame 492", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `LaunchImage`.
     var launchImage: RswiftResources.ImageResource { .init(name: "LaunchImage", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `Vector`.
+    var vector: RswiftResources.ImageResource { .init(name: "Vector", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `animal`.
     var animal: RswiftResources.ImageResource { .init(name: "animal", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `animal1`.
+    var animal1: RswiftResources.ImageResource { .init(name: "animal1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `animal2`.
+    var animal2: RswiftResources.ImageResource { .init(name: "animal2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `animal3`.
+    var animal3: RswiftResources.ImageResource { .init(name: "animal3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `animal4`.
+    var animal4: RswiftResources.ImageResource { .init(name: "animal4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `app_icon_1`.
     var app_icon_1: RswiftResources.ImageResource { .init(name: "app_icon_1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -84,11 +102,29 @@ struct _R {
     /// Image `background_bo1`.
     var background_bo1: RswiftResources.ImageResource { .init(name: "background_bo1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `banner_time`.
+    var banner_time: RswiftResources.ImageResource { .init(name: "banner_time", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `button_clear_text`.
     var button_clear_text: RswiftResources.ImageResource { .init(name: "button_clear_text", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `button_copy_text`.
     var button_copy_text: RswiftResources.ImageResource { .init(name: "button_copy_text", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `car1`.
+    var car1: RswiftResources.ImageResource { .init(name: "car1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `car2`.
+    var car2: RswiftResources.ImageResource { .init(name: "car2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `car3`.
+    var car3: RswiftResources.ImageResource { .init(name: "car3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `car4`.
+    var car4: RswiftResources.ImageResource { .init(name: "car4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `car5`.
+    var car5: RswiftResources.ImageResource { .init(name: "car5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `icon-heart`.
     var iconHeart: RswiftResources.ImageResource { .init(name: "icon-heart", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -119,6 +155,9 @@ struct _R {
 
     /// Image `icon_change_tone`.
     var icon_change_tone: RswiftResources.ImageResource { .init(name: "icon_change_tone", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_close`.
+    var icon_close: RswiftResources.ImageResource { .init(name: "icon_close", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `icon_commit_1`.
     var icon_commit_1: RswiftResources.ImageResource { .init(name: "icon_commit_1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -201,14 +240,68 @@ struct _R {
     /// Image `icon_secured`.
     var icon_secured: RswiftResources.ImageResource { .init(name: "icon_secured", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `image_categories`.
+    var image_categories: RswiftResources.ImageResource { .init(name: "image_categories", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `landscape`.
     var landscape: RswiftResources.ImageResource { .init(name: "landscape", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `launch1`.
+    var launch1: RswiftResources.ImageResource { .init(name: "launch1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `launch2`.
+    var launch2: RswiftResources.ImageResource { .init(name: "launch2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `launch3`.
+    var launch3: RswiftResources.ImageResource { .init(name: "launch3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `launch4`.
+    var launch4: RswiftResources.ImageResource { .init(name: "launch4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `launch5`.
+    var launch5: RswiftResources.ImageResource { .init(name: "launch5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `man`.
     var man: RswiftResources.ImageResource { .init(name: "man", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `man1`.
+    var man1: RswiftResources.ImageResource { .init(name: "man1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `man2`.
+    var man2: RswiftResources.ImageResource { .init(name: "man2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `man3`.
+    var man3: RswiftResources.ImageResource { .init(name: "man3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `man4`.
+    var man4: RswiftResources.ImageResource { .init(name: "man4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `man5`.
+    var man5: RswiftResources.ImageResource { .init(name: "man5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `man6`.
+    var man6: RswiftResources.ImageResource { .init(name: "man6", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `mecha_robot`.
     var mecha_robot: RswiftResources.ImageResource { .init(name: "mecha_robot", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `robot1`.
+    var robot1: RswiftResources.ImageResource { .init(name: "robot1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `robot2`.
+    var robot2: RswiftResources.ImageResource { .init(name: "robot2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `robot3`.
+    var robot3: RswiftResources.ImageResource { .init(name: "robot3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `robot4`.
+    var robot4: RswiftResources.ImageResource { .init(name: "robot4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `robot5`.
+    var robot5: RswiftResources.ImageResource { .init(name: "robot5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `robot6`.
+    var robot6: RswiftResources.ImageResource { .init(name: "robot6", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `splash`.
     var splash: RswiftResources.ImageResource { .init(name: "splash", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -219,11 +312,29 @@ struct _R {
     /// Image `surrealistic_wallpaper_21_origin 1`.
     var surrealistic_wallpaper_21_origin1: RswiftResources.ImageResource { .init(name: "surrealistic_wallpaper_21_origin 1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `tabbar_back`.
+    var tabbar_back: RswiftResources.ImageResource { .init(name: "tabbar_back", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `tabbar_setting_dark`.
     var tabbar_setting_dark: RswiftResources.ImageResource { .init(name: "tabbar_setting_dark", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `woman`.
     var woman: RswiftResources.ImageResource { .init(name: "woman", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `woman1`.
+    var woman1: RswiftResources.ImageResource { .init(name: "woman1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `woman2`.
+    var woman2: RswiftResources.ImageResource { .init(name: "woman2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `woman3`.
+    var woman3: RswiftResources.ImageResource { .init(name: "woman3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `woman5`.
+    var woman5: RswiftResources.ImageResource { .init(name: "woman5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `woman6`.
+    var woman6: RswiftResources.ImageResource { .init(name: "woman6", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
   }
 
   /// This `_R.entitlements` struct is generated, and contains static references to 0 properties.
@@ -232,9 +343,15 @@ struct _R {
     let comAppleSecurityNetworkClient: Bool = true
   }
 
-  /// This `_R.font` struct is generated, and contains static references to 5 fonts.
+  /// This `_R.font` struct is generated, and contains static references to 7 fonts.
   struct font: Sequence {
     let bundle: Foundation.Bundle
+
+    /// Font `OpenSans-Regular`.
+    var openSansRegular: RswiftResources.FontResource { .init(name: "OpenSans-Regular", bundle: bundle, filename: "OpenSans-Text.ttf") }
+
+    /// Font `OpenSans-SemiBold`.
+    var openSansSemiBold: RswiftResources.FontResource { .init(name: "OpenSans-SemiBold", bundle: bundle, filename: "OpenSans-SemiBold.ttf") }
 
     /// Font `SFProText-Bold`.
     var sfProTextBold: RswiftResources.FontResource { .init(name: "SFProText-Bold", bundle: bundle, filename: "SF-Pro-Text-Bold.ttf") }
@@ -252,7 +369,7 @@ struct _R {
     var sfProTextSemibold: RswiftResources.FontResource { .init(name: "SFProText-Semibold", bundle: bundle, filename: "SF-Pro-Text-Semibold.ttf") }
 
     func makeIterator() -> IndexingIterator<[RswiftResources.FontResource]> {
-      [sfProTextBold, sfProTextHeavy, sfProTextMedium, sfProTextRegular, sfProTextSemibold].makeIterator()
+      [openSansRegular, openSansSemiBold, sfProTextBold, sfProTextHeavy, sfProTextMedium, sfProTextRegular, sfProTextSemibold].makeIterator()
     }
     func validate() throws {
       for font in self {
@@ -261,12 +378,18 @@ struct _R {
     }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 7 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 9 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
     /// Resource file `GoogleService-Info.plist`.
     var googleServiceInfoPlist: RswiftResources.FileResource { .init(name: "GoogleService-Info", pathExtension: "plist", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `OpenSans-SemiBold.ttf`.
+    var openSansSemiBoldTtf: RswiftResources.FileResource { .init(name: "OpenSans-SemiBold", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `OpenSans-Text.ttf`.
+    var openSansTextTtf: RswiftResources.FileResource { .init(name: "OpenSans-Text", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `Plist`.
     var plist: RswiftResources.FileResource { .init(name: "Plist", pathExtension: "", bundle: bundle, locale: LocaleReference.none) }
