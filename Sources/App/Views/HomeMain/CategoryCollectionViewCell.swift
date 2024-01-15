@@ -9,6 +9,8 @@
 import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
+
+    // CODE REVIEW: let cho id - để không bị set lại id
     static var id = "CategoryCollectionViewCell"
     private lazy var categoryImage = UIImageView()
     private lazy var nameCategoryLabel = UILabel()
