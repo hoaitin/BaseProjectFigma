@@ -9,7 +9,7 @@
 import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
-    static var id = "CategoryCollectionViewCell"
+    static let id = "CategoryCollectionViewCell"
     private lazy var categoryImage = UIImageView()
     private lazy var nameCategoryLabel = UILabel()
     

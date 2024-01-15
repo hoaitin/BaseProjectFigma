@@ -3,6 +3,8 @@ import SnapKit
 import CoreLocation
 import Photos
 import DGActivityIndicatorView
+import Kingfisher
+import NVActivityIndicatorView
 
 class MainViewController: UIViewController{
     private lazy var backgroundImageView = UIImageView()
@@ -16,7 +18,8 @@ class MainViewController: UIViewController{
     private lazy var categoriesCollectionView = UICollectionView()
     private var categories: [CategoryItem] = []
     private lazy var categoriesView = UIView()
-    private lazy var activityIndicator = DGActivityIndicatorView()
+    private lazy var alert = UIAlertController()
+    private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     private var category: CategoryItem?
     private var imageitem: ImageItem?
     var shouldPerformViewDidAppear = true
@@ -25,6 +28,7 @@ class MainViewController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = ConfigColor.main_bg
         
+      
         setUpViews()
         setUpConstraints()
     }
@@ -74,8 +78,7 @@ class MainViewController: UIViewController{
         setCategoriesCollection()
         
         activityIndicator.type = .ballSpinFadeLoader
-        activityIndicator.tintColor = UIColor(hex: 0x4ABEFE)
-        activityIndicator.size = 70
+        activityIndicator.color = UIColor(hex: 0x4ABEFE)
         
         let clickTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
         clickTapGesture.numberOfTapsRequired = 1
@@ -97,13 +100,13 @@ class MainViewController: UIViewController{
         category = categories.first
         self.bannerTimeImage.isHidden = true
         self.textLabel.isHidden = true
+        activityIndicator.startAnimating()
         if let  imageItem = self.category?.randomImage(){
             self.imageitem = imageItem
-            MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView)
+            MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
         }
         selectedIndexPath = IndexPath(item: 0, section: 0)
         categoriesCollectionView.reloadData()
-      
     }
     
     func setUpConstraints() {
@@ -188,12 +191,14 @@ class MainViewController: UIViewController{
             // Xác định tọa độ của double click
             let location = gesture.location(in: view)
         
-        if location.y > 100 && location.y < UIScreen.main.bounds.height - 221 {
+        if location.y > 100 && location.y < UIScreen.main.bounds.height - 230 {
                 // Thực hiện animation để hiển thị hoặc ẩn collectionView
                 UIView.animate(withDuration: 0.9) {
                     if self.categoriesView.frame.origin.y == UIScreen.main.bounds.height {
                         self.categoriesView.frame.origin.y -= 221
+                    
                     } else {
+                     
                         self.categoriesView.frame.origin.y = UIScreen.main.bounds.height
                     }
                 }
@@ -206,23 +211,18 @@ class MainViewController: UIViewController{
                 if let image = self.imageitem {
                     if let  imageItem = self.category?.backImage(imageItem: image){
                         self.imageitem = imageItem
-                        MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView)
+                        MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
                     }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.activityIndicator.stopAnimating()
                 }
             } else if gesture.direction == .right {
                 activityIndicator.startAnimating()
                 if let image = self.imageitem {
                     if let  imageItem = self.category?.nextImage(imageItem: image){
                         self.imageitem = imageItem
-                        MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView)
+                        MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
                     }
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.activityIndicator.stopAnimating()
-                }
+                
             }
         }
     
@@ -242,10 +242,7 @@ class MainViewController: UIViewController{
         if let  imageItem = self.category?.randomImage(){
             self.imageitem = imageItem
             activityIndicator.startAnimating()
-            MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.activityIndicator.stopAnimating()
-            }
+            MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
         }
     }
     
@@ -338,10 +335,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 if let  imageItem = self.category?.randomImage(){
                     self.imageitem = imageItem
                     activityIndicator.startAnimating()
-                    MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        self.activityIndicator.stopAnimating()
-                    }
+                    MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
+                  
                 }
                 newSelectedCell.setAction() // Hoặc màu chữ bạn muốn sử dụng
             }

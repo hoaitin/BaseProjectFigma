@@ -10,6 +10,8 @@ def common_pods
   pod 'Firebase'
   pod 'Firebase/RemoteConfig'
   pod 'DGActivityIndicatorView'
+  pod 'Kingfisher'
+  pod 'NVActivityIndicatorView'
   pod 'Alamofire'
   
 end
