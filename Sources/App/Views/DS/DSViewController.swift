@@ -135,16 +135,6 @@ class DSViewController: UIViewController{
         backButton.isHidden = true
     }
     
-    @objc func backView(){
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func handleClickNextView(){
-        UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-        let view = MainViewController()
-        navigationController?.pushViewController(view, animated: true)
-    }
-    
     func setUpConstraints() {
         view.addSubview(backgroundView)
         view.addSubview(containerView)
@@ -292,5 +282,17 @@ class DSViewController: UIViewController{
         }
         
     }
+    
+    @objc func backView(){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleClickNextView(){
+        UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+        let view = MainViewController()
+        navigationController?.pushViewController(view, animated: true)
+    }
+    
+    
 }
 

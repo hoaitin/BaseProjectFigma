@@ -31,18 +31,6 @@ class SplashViewController: UIViewController{
         self.nextPageHasLaunchedBefore()
     }
     
-    func nextPageHasLaunchedBefore(){
-        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
-        if !hasLaunchedBefore {
-            let viewOB = OBViewController()
-            navigationController?.pushViewController(viewOB, animated: true)
-        } else {
-           let viewMain = MainViewController()
-           navigationController?.pushViewController(viewMain, animated: true)
-            
-        }
-    }
-    
     func setUpViews() {
         backgroundImageView.image = UIImage(named: "splash")
         backgroundImageView.contentMode = .scaleAspectFill // Adjust content mode as needed
@@ -87,6 +75,18 @@ class SplashViewController: UIViewController{
         }
         
         
+    }
+    
+    func nextPageHasLaunchedBefore(){
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        if !hasLaunchedBefore {
+            let viewOB = OBViewController()
+            navigationController?.pushViewController(viewOB, animated: true)
+        } else {
+           let viewMain = MainViewController()
+           navigationController?.pushViewController(viewMain, animated: true)
+            
+        }
     }
 
 }

@@ -43,21 +43,6 @@ class OBViewController: UIViewController{
         self.setCollection()
     }
     
-    @objc func handleClickNextView(){
-        
-        currentIndex += 1
-        if obNumber == 1 {
-            obNumber = 2
-        
-        let index = IndexPath(row: currentIndex, section: 0)
-        obColectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-        }else{
-            let view = DSViewController()
-            navigationController?.pushViewController(view, animated: true)
-            
-        }
-    }
-    
     func setUpConstraints() {
     
         view.addSubview(obColectionView)
@@ -75,6 +60,22 @@ class OBViewController: UIViewController{
         
     }
 
+    
+    @objc func handleClickNextView(){
+        
+        currentIndex += 1
+        if obNumber == 1 {
+            obNumber = 2
+        
+        let index = IndexPath(row: currentIndex, section: 0)
+        obColectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        }else{
+            let view = DSViewController()
+            navigationController?.pushViewController(view, animated: true)
+            
+        }
+    }
+    
 }
 extension OBViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     

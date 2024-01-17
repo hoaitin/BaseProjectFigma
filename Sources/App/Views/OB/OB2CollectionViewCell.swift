@@ -43,8 +43,6 @@ class OB2CollectionViewCell: UICollectionViewCell {
         
         contentImage.image = UIImage(named: "image_categories")
         contentImage.contentMode  = .scaleAspectFill
-        
-      
     }
     
     func setUpConstraints(){
@@ -65,7 +63,7 @@ class OB2CollectionViewCell: UICollectionViewCell {
         
         contentImage.snp.makeConstraints{
             $0.size.equalTo(CGSize(width: contentView.frame.width - 40, height: 254))
-            if contentView.frame.width >= 812 {
+            if contentView.frame.height >= 812 {
                 $0.center.equalToSuperview()
             } else {
                 $0.centerX.equalToSuperview()

@@ -5,6 +5,8 @@ import Photos
 import DGActivityIndicatorView
 import Kingfisher
 import NVActivityIndicatorView
+import RxSwift
+import RxCocoa
 
 class MainViewController: UIViewController{
     private lazy var backgroundImageView = UIImageView()
@@ -21,26 +23,38 @@ class MainViewController: UIViewController{
     private lazy var alert = UIAlertController()
     private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     private var category: CategoryItem?
-    private var imageitem: ImageItem?
+    private var listImage:[String] = []
+    private var image:String?
     var shouldPerformViewDidAppear = true
     private var selectedIndexPath: IndexPath?
+    private lazy var centerButton = UIButton()
+    var isShowCate = false
+    let disP = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ConfigColor.main_bg
-        
-      
         setUpViews()
         setUpConstraints()
+        setupRx()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if shouldPerformViewDidAppear {
-            if let data = RequestApi.share.getApiCategories(jsonString: FileJson.json){
-                loadData(data: data)
-            }else{
-                self.showErrorMessageAlert(message: "no network")
+            PostService.share.fetchAllCategories(){
+                (isSuccess,data,message) in
+                if(isSuccess){
+                    if let categories = data as? [CategoryItem] {
+                        self.loadData(data: categories)
+                    }
+                }else{
+                    self.showErrorMessageAlert(message: message ?? "")
+                }
             }
+        
         }
         shouldPerformViewDidAppear = false
     }
@@ -80,11 +94,6 @@ class MainViewController: UIViewController{
         activityIndicator.type = .ballSpinFadeLoader
         activityIndicator.color = UIColor(hex: 0x4ABEFE)
         
-        let clickTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
-        clickTapGesture.numberOfTapsRequired = 1
-        clickTapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(clickTapGesture)
-        
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
         swipeLeftGesture.direction = .left
         view.addGestureRecognizer(swipeLeftGesture)
@@ -95,23 +104,12 @@ class MainViewController: UIViewController{
     
     }
     
-    func loadData(data: [CategoryItem]){
-        categories = data
-        category = categories.first
-        self.bannerTimeImage.isHidden = true
-        self.textLabel.isHidden = true
-        activityIndicator.startAnimating()
-        if let  imageItem = self.category?.randomImage(){
-            self.imageitem = imageItem
-            MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
-        }
-        selectedIndexPath = IndexPath(item: 0, section: 0)
-        categoriesCollectionView.reloadData()
-    }
+    // constraint
     
     func setUpConstraints() {
         view.addSubview(backgroundImageView)
         view.addSubview(bannerTimeImage)
+
         view.addSubview(textLabel)
         view.addSubview(headerView)
         view.addSubview(categoriesView)
@@ -123,6 +121,13 @@ class MainViewController: UIViewController{
         headerView.addSubview(kingButton)
         headerView.addSubview(refreshButton)
         headerView.addSubview(downloadButton)
+        
+        view.addSubview(centerButton)
+        
+        centerButton.snp.makeConstraints{
+            $0.center.equalToSuperview()
+            $0.size.equalTo(CGSize(width: 200, height: 450))
+        }
         
         backgroundImageView.snp.makeConstraints{
             $0.edges.equalToSuperview()
@@ -175,51 +180,67 @@ class MainViewController: UIViewController{
         }
         
         categoriesView.snp.makeConstraints{
-            $0.bottom.equalToSuperview()
-            $0.size.equalTo(CGSize(width: view.frame.width, height: 221))
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(221)
+            $0.bottom.equalToSuperview().inset(0)
         }
         
         categoriesCollectionView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(50)
-            $0.left.equalToSuperview()
-            $0.width.equalToSuperview().offset(-14)
+            $0.bottom.leading.trailing.equalToSuperview()
             $0.height.equalTo(150)
         }
     }
     
-    @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
-            // Xác định tọa độ của double click
-            let location = gesture.location(in: view)
-        
-        if location.y > 100 && location.y < UIScreen.main.bounds.height - 230 {
-                // Thực hiện animation để hiển thị hoặc ẩn collectionView
-                UIView.animate(withDuration: 0.9) {
-                    if self.categoriesView.frame.origin.y == UIScreen.main.bounds.height {
-                        self.categoriesView.frame.origin.y -= 221
-                    
-                    } else {
-                     
-                        self.categoriesView.frame.origin.y = UIScreen.main.bounds.height
-                    }
-                }
-            }
+    // set RX
+    func setupRx() {
+        centerButton.rx.tap
+            .withUnretained(self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { owner, _ in
+                owner.isShowCate = !owner.isShowCate
+                owner.stateCategory(isShow: owner.isShowCate)
+            })
+            .disposed(by: disP)
+            
+    }
+    // another
+
+    func stateCategory(isShow: Bool) {
+        categoriesView.snp.updateConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(221)
+            $0.bottom.equalToSuperview().inset(isShowCate ? 0 : -221)
         }
+        
+        UIView.animate(withDuration: TimeInterval(1.5)) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func loadData(data: [CategoryItem]){
+        categories = data
+        category = categories.first
+        self.bannerTimeImage.isHidden = true
+        self.textLabel.isHidden = true
+        self.loadImage()
+        selectedIndexPath = IndexPath(item: 0, section: 0)
+        categoriesCollectionView.reloadData()
+    }
     
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
             if gesture.direction == .left {
-                activityIndicator.startAnimating()
-                if let image = self.imageitem {
-                    if let  imageItem = self.category?.backImage(imageItem: image){
-                        self.imageitem = imageItem
-                        MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
+                if !self.listImage.isEmpty , let image = self.image {
+                    if let  imageItem = MainViewModel.share.backImage(imageItem: image, listImage: self.listImage){
+                        self.image = imageItem
+                        self.getImage(image: imageItem)
+                        
                     }
                 }
             } else if gesture.direction == .right {
-                activityIndicator.startAnimating()
-                if let image = self.imageitem {
-                    if let  imageItem = self.category?.nextImage(imageItem: image){
-                        self.imageitem = imageItem
-                        MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
+                if !self.listImage.isEmpty , let image = self.image {
+                    if let  imageItem = MainViewModel.share.nextImage(imageItem: image, listImage: self.listImage){
+                        self.image = imageItem
+                        self.getImage(image: imageItem)
                     }
                 }
                 
@@ -238,24 +259,29 @@ class MainViewController: UIViewController{
     }
     
     @objc func handleShuffle(){
-        category?.shuffleListImage()
-        if let  imageItem = self.category?.randomImage(){
-            self.imageitem = imageItem
-            activityIndicator.startAnimating()
-            MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
+        self.shuffleListImage()
+        if !self.listImage.isEmpty {
+            if let  imageItem = MainViewModel.share.randomImage(images: listImage){
+                self.image = imageItem
+                self.getImage(image: imageItem)
+                
+            }
         }
     }
     
     @objc func downloadImage(){
-        UiltFormat.share.loadImage(from: self.imageitem?.linkImage ?? ""  ) { [weak self] (result) in
-                   // Xử lý kết quả
-                   switch result {
-                   case .success(let image):
-                       UIImageWriteToSavedPhotosAlbum(image, self, #selector(self!.image(_:didFinishSavingWithError:contextInfo:)), nil)
-                   case .failure(let error):
-                       // Xử lý lỗi (nếu cần)
-                       print("Error: \(error.localizedDescription)")
-                   }
+        if let nameImage = self.image {
+            ApiWallpapers.share.getWallpaperByName(category: self.category!.id, name: nameImage){
+                (isSuccess,data,message) in
+                if(isSuccess){
+                    if let imageView = UIImage(data: data as! Data) {
+                        UIImageWriteToSavedPhotosAlbum(imageView, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                    }
+                }else{
+                    self.activityIndicator.stopAnimating()
+                    self.showErrorMessageAlert(message: message ?? "")
+                }
+            }
         }
     }
     
@@ -274,6 +300,56 @@ class MainViewController: UIViewController{
            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
            alert.addAction(okAction)
            present(alert, animated: true, completion: nil)
+    }
+    
+    func shuffleListImage(){
+        self.listImage.shuffle()
+    }
+    
+    func loadImage(){
+        if let categoryID = self.category?.id{
+            ApiWallpapers.share.getWallpapersByCategory(category: categoryID){
+                (isSuccess,data,message) in
+                if(isSuccess){
+                    if var images = data as? [String]{
+                        self.listImage = images
+                        self.shuffleListImage()
+                        if var nameImage = MainViewModel.share.randomImage(images: images) {
+                            self.image = nameImage
+                            self.getImage(image: nameImage)
+                        }
+                    }
+                }else{
+                    self.showErrorMessageAlert(message: message ?? "")
+                }
+            }
+        }
+    }
+    
+    func getImage(image: String){
+        let isloadImage = MainViewModel.share.isLoadImage(image: image)
+        if(!isloadImage){
+            activityIndicator.startAnimating()
+        }
+        if let categoryId = self.category?.id {
+            ApiWallpapers.share.getWallpaperByName(category: categoryId, name: image){
+                (isSuccess,data,message) in
+                if(isSuccess){
+                    if let dataImage = data as? Data {
+                        self.backgroundImageView.image = UIImage(data: dataImage)
+                        if(!isloadImage){
+                            self.activityIndicator.stopAnimating()
+                        }
+                    }
+                    
+                }else{
+                    if(!isloadImage){
+                        self.activityIndicator.stopAnimating()
+                    }
+                    self.showErrorMessageAlert(message: message ?? "")
+                }
+            }
+        }
     }
     
 }
@@ -316,13 +392,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+       
         // Kiểm tra xem có cell nào được chọn trước đó không
         if let previousSelectedIndexPath = selectedIndexPath {
             if let previousSelectedCell = collectionView.cellForItem(at: previousSelectedIndexPath) as?
                 CategoryCollectionViewCell {
                 if(!previousSelectedCell.isSelected){
                     previousSelectedCell.hiddenAction()
+                    UserDefaults.standard.removeObject(forKey: "images")
                 }
               
             }
@@ -332,12 +409,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if newSelectedCell.isSelected {
                 let category = categories[indexPath.item]
                 self.category = category
-                if let  imageItem = self.category?.randomImage(){
-                    self.imageitem = imageItem
-                    activityIndicator.startAnimating()
-                    MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView,activityIndicator: activityIndicator,showErrorMessageAlert: showErrorMessageAlert)
-                  
-                }
+                self.loadImage()
+               
                 newSelectedCell.setAction() // Hoặc màu chữ bạn muốn sử dụng
             }
         }
@@ -347,3 +420,4 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
 }
+

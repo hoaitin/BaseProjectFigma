@@ -12,7 +12,6 @@
 		2439149B296405A00038474C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2439149D296405A00038474C /* Launch Screen.storyboard */; };
 		24455A6129C169B100836890 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24455A6029C169B100836890 /* StoreKit.framework */; };
 		247DA2342B348C2800487563 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247DA2332B348C2800487563 /* MainViewController.swift */; };
-		249DF8BE2AFB8E39008E6F48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 249DF8BD2AFB8E39008E6F48 /* GoogleService-Info.plist */; };
 		249DF8C32AFB8E45008E6F48 /* SF-Pro-Text-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 249DF8BF2AFB8E44008E6F48 /* SF-Pro-Text-Medium.ttf */; };
 		249DF8C42AFB8E45008E6F48 /* SF-Pro-Text-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 249DF8C02AFB8E44008E6F48 /* SF-Pro-Text-Regular.ttf */; };
 		249DF8C52AFB8E45008E6F48 /* SF-Pro-Text-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 249DF8C12AFB8E44008E6F48 /* SF-Pro-Text-Semibold.ttf */; };
@@ -25,6 +24,9 @@
 		C308B8952B4D066E0084CF1C /* OB2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B8942B4D066E0084CF1C /* OB2CollectionViewCell.swift */; };
 		C31987DF2B4E4A1A000640BA /* ConfigColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31987DE2B4E4A1A000640BA /* ConfigColor.swift */; };
 		C31987F22B4FBA8A000640BA /* RequestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31987F12B4FBA8A000640BA /* RequestApi.swift */; };
+		C32237AB2B5673F4001861D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C32237AA2B5673F4001861D1 /* GoogleService-Info.plist */; };
+		C32237AE2B56789C001861D1 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32237AD2B56789C001861D1 /* PostService.swift */; };
+		C32237B22B57726C001861D1 /* ApiWallpapers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32237B12B57726C001861D1 /* ApiWallpapers.swift */; };
 		C329CE602B4B9532005FBF62 /* DSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329CE5F2B4B9532005FBF62 /* DSViewController.swift */; };
 		C329CE622B4BA8D2005FBF62 /* InformationPremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329CE612B4BA8D2005FBF62 /* InformationPremiumView.swift */; };
 		C329CE642B4BE43A005FBF62 /* UiltFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329CE632B4BE43A005FBF62 /* UiltFormat.swift */; };
@@ -33,6 +35,7 @@
 		C34ABFDF2B47C0B900C8D7E5 /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34ABFDE2B47C0B900C8D7E5 /* GradientLabel.swift */; };
 		C34ABFE32B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34ABFE22B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift */; };
 		C34ABFE52B47F23800C8D7E5 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34ABFE42B47F23800C8D7E5 /* ContinueButton.swift */; };
+		C3570BBF2B55273800942D6A /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3570BBE2B55273800942D6A /* UIImageViewExtension.swift */; };
 		C39D0D502B54D01E000B43FE /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D0D4F2B54D01E000B43FE /* CategoryItem.swift */; };
 		C39D0D522B54D127000B43FE /* FileJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D0D512B54D127000B43FE /* FileJson.swift */; };
 		C39D0D542B54D29D000B43FE /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D0D532B54D29D000B43FE /* MainViewModel.swift */; };
@@ -67,7 +70,6 @@
 		24455A6029C169B100836890 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		247DA2332B348C2800487563 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		249C2A2C29B889DC00E2E8DC /* Qonversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Qonversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		249DF8BD2AFB8E39008E6F48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		249DF8BF2AFB8E44008E6F48 /* SF-Pro-Text-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.ttf"; sourceTree = "<group>"; };
 		249DF8C02AFB8E44008E6F48 /* SF-Pro-Text-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.ttf"; sourceTree = "<group>"; };
 		249DF8C12AFB8E44008E6F48 /* SF-Pro-Text-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.ttf"; sourceTree = "<group>"; };
@@ -97,6 +99,9 @@
 		C308B8942B4D066E0084CF1C /* OB2CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OB2CollectionViewCell.swift; sourceTree = "<group>"; };
 		C31987DE2B4E4A1A000640BA /* ConfigColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigColor.swift; sourceTree = "<group>"; };
 		C31987F12B4FBA8A000640BA /* RequestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApi.swift; sourceTree = "<group>"; };
+		C32237AA2B5673F4001861D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../Sources/App/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C32237AD2B56789C001861D1 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		C32237B12B57726C001861D1 /* ApiWallpapers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiWallpapers.swift; sourceTree = "<group>"; };
 		C329CE5F2B4B9532005FBF62 /* DSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSViewController.swift; sourceTree = "<group>"; };
 		C329CE612B4BA8D2005FBF62 /* InformationPremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPremiumView.swift; sourceTree = "<group>"; };
 		C329CE632B4BE43A005FBF62 /* UiltFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiltFormat.swift; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		C34ABFDE2B47C0B900C8D7E5 /* GradientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
 		C34ABFE22B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		C34ABFE42B47F23800C8D7E5 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
+		C3570BBE2B55273800942D6A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		C39D0D4F2B54D01E000B43FE /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		C39D0D512B54D127000B43FE /* FileJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileJson.swift; sourceTree = "<group>"; };
 		C39D0D532B54D29D000B43FE /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 		BE2C22A222A8EE6C003526A6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C3570BBD2B55272000942D6A /* Extension */,
 				BE2C22A322A8EE6C003526A6 /* App */,
 			);
 			path = Sources;
@@ -186,6 +193,7 @@
 		BE2C22A322A8EE6C003526A6 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				C32237AC2B567852001861D1 /* Api */,
 				C3B6326C2B3BD5E900095CE2 /* Uilt */,
 				C3B632592B3A850A00095CE2 /* Networking */,
 				C3B632562B39662600095CE2 /* ViewModel */,
@@ -200,7 +208,7 @@
 		BE2C22A422A8EE6C003526A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				249DF8BD2AFB8E39008E6F48 /* GoogleService-Info.plist */,
+				C32237AA2B5673F4001861D1 /* GoogleService-Info.plist */,
 				BE2C22B222A8EE6C003526A6 /* Assets.xcassets */,
 				D8158CFB2610CA60005CD0EB /* Configuration.storekit */,
 				D87C09242536119800F8A92D /* Fonts */,
@@ -318,6 +326,23 @@
 				C34ABFE22B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift */,
 			);
 			path = HomeMain;
+			sourceTree = "<group>";
+		};
+		C32237AC2B567852001861D1 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				C32237AD2B56789C001861D1 /* PostService.swift */,
+				C32237B12B57726C001861D1 /* ApiWallpapers.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		C3570BBD2B55272000942D6A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C3570BBE2B55273800942D6A /* UIImageViewExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C3B632552B3965F000095CE2 /* Model */ = {
@@ -500,7 +525,7 @@
 				D8729C8F2431A2250045F4FF /* Assets.xcassets in Resources */,
 				2439149B296405A00038474C /* Launch Screen.storyboard in Resources */,
 				D8A3B18B2622C39400BAAC41 /* Main.storyboard in Resources */,
-				249DF8BE2AFB8E39008E6F48 /* GoogleService-Info.plist in Resources */,
+				C32237AB2B5673F4001861D1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,9 +621,12 @@
 				C34ABFE32B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift in Sources */,
 				BE2C22E222A8F134003526A6 /* AppDelegate.swift in Sources */,
 				247DA2342B348C2800487563 /* MainViewController.swift in Sources */,
+				C32237AE2B56789C001861D1 /* PostService.swift in Sources */,
 				24ECFB8B290294DA008F7DA5 /* R.generated.swift in Sources */,
 				C329CE682B4BF892005FBF62 /* SettingViewController.swift in Sources */,
 				C34ABFDF2B47C0B900C8D7E5 /* GradientLabel.swift in Sources */,
+				C32237B22B57726C001861D1 /* ApiWallpapers.swift in Sources */,
+				C3570BBF2B55273800942D6A /* UIImageViewExtension.swift in Sources */,
 				C329CE622B4BA8D2005FBF62 /* InformationPremiumView.swift in Sources */,
 				C34ABFDB2B47B63600C8D7E5 /* SplashViewController.swift in Sources */,
 				C31987F22B4FBA8A000640BA /* RequestApi.swift in Sources */,

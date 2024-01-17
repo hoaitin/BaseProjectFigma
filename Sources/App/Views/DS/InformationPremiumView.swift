@@ -26,18 +26,6 @@ class InformationPremiumView: UIView {
         setUpConstraints()
     }
     
-    var icon: UIImage? {
-            didSet {
-                iconImage.image = icon
-            }
-        }
-
-    var infoText: String? {
-            didSet {
-                titleLabel.text = infoText
-            }
-    }
-    
     func setUpViews() {
         iconImage.contentMode = .scaleAspectFit
         
@@ -65,4 +53,18 @@ class InformationPremiumView: UIView {
         }
         
     }
+    
+    var icon: UIImage? {
+            didSet {
+                iconImage.image = icon
+            }
+        }
+
+    var infoText: String? {
+            didSet {
+                titleLabel.text = infoText
+            }
+    }
+    
+   
 }

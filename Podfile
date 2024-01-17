@@ -8,10 +8,14 @@ def common_pods
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase'
+  pod 'FirebaseStorage'
+  pod 'FirebaseDatabase'
   pod 'Firebase/RemoteConfig'
   pod 'DGActivityIndicatorView'
   pod 'Kingfisher'
   pod 'NVActivityIndicatorView'
+  pod 'RxSwift', '6.1.0'
+  pod 'RxCocoa', '6.1.0'
   pod 'Alamofire'
   
 end
