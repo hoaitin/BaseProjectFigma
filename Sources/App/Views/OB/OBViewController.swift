@@ -75,9 +75,7 @@ class OBViewController: UIViewController{
         
     }
 
-    
     @objc func handleClickNextView(){
-        
         currentIndex += 1
         if obNumber == 1 {
             obNumber = 2

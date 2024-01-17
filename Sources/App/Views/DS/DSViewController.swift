@@ -38,8 +38,6 @@ class DSViewController: UIViewController{
     private lazy var termButton = UIButton()
     private lazy var policeButton = UIButton()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +50,6 @@ class DSViewController: UIViewController{
         super.viewDidAppear(animated)
         
         backButton.isHidden = false
-        
     }
     
     func setUpViews() {
@@ -325,8 +322,6 @@ class DSViewController: UIViewController{
             $0.leading.equalTo(termButton.snp.trailing)
             $0.size.equalTo(CGSize(width: 48, height: 18))
         }
-    
-        
     }
     
     @objc func backView(){

@@ -26,7 +26,6 @@ class OB1CollectionViewCell: UICollectionViewCell {
         setUpConstraints()
     }
     
-    
     func setUpView(){
         backgroundImageView.image = UIImage(named: "surrealistic_wallpaper_21_origin 1")
         backgroundImageView.contentMode = .scaleAspectFill

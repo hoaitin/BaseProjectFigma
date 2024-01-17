@@ -74,7 +74,6 @@ class SplashViewController: UIViewController{
             $0.size.equalTo(CGSize(width: 268, height: 150))
         }
         
-        
     }
     
     func nextPageHasLaunchedBefore(){
