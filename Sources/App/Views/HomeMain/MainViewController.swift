@@ -18,26 +18,29 @@ class MainViewController: UIViewController{
     private lazy var downloadButton = UIButton()
     private lazy var refreshButton = UIButton()
     private lazy var categoriesCollectionView = UICollectionView()
-    private var categories: [CategoryItem] = []
     private lazy var categoriesView = UIView()
     private lazy var alert = UIAlertController()
     private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    
+    private lazy var centerButton = UIButton()
+    private var categories: [CategoryItem] = []
     private var category: CategoryItem?
     private var listImage:[String] = []
     private var image:String?
-    var shouldPerformViewDidAppear = true
+    private var shouldPerformViewDidAppear = true
     private var selectedIndexPath: IndexPath?
-    private lazy var centerButton = UIButton()
+
     var isShowCate = false
     let disP = DisposeBag()
+    private let apiWallpapers = ApiWallpapers.share
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ConfigColor.main_bg
+        
         setUpViews()
         setUpConstraints()
         setupRx()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -220,32 +223,33 @@ class MainViewController: UIViewController{
     func loadData(data: [CategoryItem]){
         categories = data
         category = categories.first
-        self.bannerTimeImage.isHidden = true
-        self.textLabel.isHidden = true
         self.loadImage()
         selectedIndexPath = IndexPath(item: 0, section: 0)
         categoriesCollectionView.reloadData()
     }
     
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
-            if gesture.direction == .left {
-                if !self.listImage.isEmpty , let image = self.image {
-                    if let  imageItem = MainViewModel.share.backImage(imageItem: image, listImage: self.listImage){
-                        self.image = imageItem
-                        self.getImage(image: imageItem)
-                        
-                    }
+        switch gesture.direction {
+        case .left:
+            if !self.listImage.isEmpty , let image = self.image {
+                if let  imageItem = MainViewModel.share.backImage(imageItem: image, listImage: self.listImage){
+                    self.image = imageItem
+                    self.getImage(image: imageItem)
+                    
                 }
-            } else if gesture.direction == .right {
-                if !self.listImage.isEmpty , let image = self.image {
-                    if let  imageItem = MainViewModel.share.nextImage(imageItem: image, listImage: self.listImage){
-                        self.image = imageItem
-                        self.getImage(image: imageItem)
-                    }
-                }
-                
             }
+        case .right:
+            if !self.listImage.isEmpty , let image = self.image {
+                if let  imageItem = MainViewModel.share.nextImage(imageItem: image, listImage: self.listImage){
+                    self.image = imageItem
+                    self.getImage(image: imageItem)
+                }
+            }
+        default:
+            print("Value is something else")
         }
+        
+    }
     
     @objc func nextSettting(){
         let view = SettingViewController()
@@ -271,7 +275,7 @@ class MainViewController: UIViewController{
     
     @objc func downloadImage(){
         if let nameImage = self.image {
-            ApiWallpapers.share.getWallpaperByName(category: self.category!.id, name: nameImage){
+            apiWallpapers.getWallpaperByName(category: self.category!.id, name: nameImage){
                 (isSuccess,data,message) in
                 if(isSuccess){
                     if let imageView = UIImage(data: data as! Data) {
@@ -308,13 +312,13 @@ class MainViewController: UIViewController{
     
     func loadImage(){
         if let categoryID = self.category?.id{
-            ApiWallpapers.share.getWallpapersByCategory(category: categoryID){
+            apiWallpapers.getWallpapersByCategory(category: categoryID){
                 (isSuccess,data,message) in
                 if(isSuccess){
-                    if var images = data as? [String]{
+                    if let images = data as? [String]{
                         self.listImage = images
                         self.shuffleListImage()
-                        if var nameImage = MainViewModel.share.randomImage(images: images) {
+                        if let nameImage = MainViewModel.share.randomImage(images: images) {
                             self.image = nameImage
                             self.getImage(image: nameImage)
                         }
@@ -332,7 +336,7 @@ class MainViewController: UIViewController{
             activityIndicator.startAnimating()
         }
         if let categoryId = self.category?.id {
-            ApiWallpapers.share.getWallpaperByName(category: categoryId, name: image){
+            apiWallpapers.getWallpaperByName(category: categoryId, name: image){
                 (isSuccess,data,message) in
                 if(isSuccess){
                     if let dataImage = data as? Data {
@@ -341,7 +345,6 @@ class MainViewController: UIViewController{
                             self.activityIndicator.stopAnimating()
                         }
                     }
-                    
                 }else{
                     if(!isloadImage){
                         self.activityIndicator.stopAnimating()

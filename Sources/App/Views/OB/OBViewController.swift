@@ -40,7 +40,22 @@ class OBViewController: UIViewController{
         continueButton.layer.zPosition = 2
         continueButton.addTarget(self, action: #selector(handleClickNextView), for: .touchUpInside)
         
-        self.setCollection()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.itemSize = CGSize(width: view.frame.width , height: view.frame.height)
+        layout.scrollDirection = .horizontal
+        self.obColectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        self.obColectionView.register(OB1CollectionViewCell.self, forCellWithReuseIdentifier: OB1CollectionViewCell.id)
+        self.obColectionView.register(OB2CollectionViewCell.self, forCellWithReuseIdentifier: OB2CollectionViewCell.id)
+        self.obColectionView.isScrollEnabled = false
+        self.obColectionView.contentMode = .scaleAspectFill
+        self.obColectionView.backgroundColor = ConfigColor.main_bg
+        self.obColectionView.dataSource = self
+        self.obColectionView.delegate = self
+        self.obColectionView.contentInsetAdjustmentBehavior = .never
+        obColectionView.allowsMultipleSelection = false
+        obColectionView.isPagingEnabled = true
     }
     
     func setUpConstraints() {
@@ -78,28 +93,6 @@ class OBViewController: UIViewController{
     
 }
 extension OBViewController: UICollectionViewDelegate, UICollectionViewDataSource{
-    
-    func setCollection(){
-        
-      
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: view.frame.width , height: view.frame.height)
-        layout.scrollDirection = .horizontal
-        self.obColectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        self.obColectionView.register(OB1CollectionViewCell.self, forCellWithReuseIdentifier: OB1CollectionViewCell.id)
-        self.obColectionView.register(OB2CollectionViewCell.self, forCellWithReuseIdentifier: OB2CollectionViewCell.id)
-        self.obColectionView.isScrollEnabled = false
-        self.obColectionView.contentMode = .scaleAspectFill
-        self.obColectionView.backgroundColor = ConfigColor.main_bg
-        self.obColectionView.dataSource = self
-        self.obColectionView.delegate = self
-        self.obColectionView.contentInsetAdjustmentBehavior = .never
-        obColectionView.allowsMultipleSelection = false
-        obColectionView.isPagingEnabled = true
-        
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2

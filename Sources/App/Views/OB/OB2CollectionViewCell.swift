@@ -31,14 +31,15 @@ class OB2CollectionViewCell: UICollectionViewCell {
     
     
     func setUpView(){
+      
         backgroundImageView.image = UIImage(named: "background_bo1")
         backgroundImageView.contentMode = .scaleAspectFill
-        
+        backgroundImageView.layer.addSublayer(UiltFormat.share.setGrandientShowdow(yourWidth: Int(contentView.frame.width), yourHeight: Int(contentView.frame.height),y: 0))
         navbarTextlabel.gradientColors = [ConfigColor.colorContinueButtonStart.cgColor,ConfigColor.colorBorderButtonEnd.cgColor]
         navbarTextlabel.text = "Stunning Categories"
         navbarTextlabel.textAlignment = .center
         navbarTextlabel.font = UIFont(name: "SP-Pro-Text-Heavy", size: 36)
-        navbarTextlabel.font = .boldSystemFont(ofSize: 36)
+        navbarTextlabel.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
         navbarTextlabel.numberOfLines = 2
         
         contentImage.image = UIImage(named: "image_categories")

@@ -17,7 +17,7 @@ class ApiWallpapers{
     
     func getWallpapersByCategory(category: String, completion: @escaping callback){
         
-        let path = "/wallpapers/".appending(category)
+        let path = "\(self.folderMain)/\(category)"
         
         let storageRef = storage.reference()
         let folderRef = storageRef.child(path)
@@ -27,7 +27,7 @@ class ApiWallpapers{
             if let error = error {
                 // Xử lý lỗi nếu có
                 completion(false,nil,"Lỗi khí lấy danh sách")
-                print("Lỗi khi lấy danh sách vật thể: \(error.localizedDescription)")
+            
             } else {
                 if let result = result {
                     var wallpapers = [String]()

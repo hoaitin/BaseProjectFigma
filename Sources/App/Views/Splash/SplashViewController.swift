@@ -78,7 +78,7 @@ class SplashViewController: UIViewController{
     }
     
     func nextPageHasLaunchedBefore(){
-        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: ConfigKey.hasLaunchedBefore)
         if !hasLaunchedBefore {
             let viewOB = OBViewController()
             navigationController?.pushViewController(viewOB, animated: true)

@@ -27,6 +27,8 @@
 		C32237AB2B5673F4001861D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C32237AA2B5673F4001861D1 /* GoogleService-Info.plist */; };
 		C32237AE2B56789C001861D1 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32237AD2B56789C001861D1 /* PostService.swift */; };
 		C32237B22B57726C001861D1 /* ApiWallpapers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32237B12B57726C001861D1 /* ApiWallpapers.swift */; };
+		C32237B42B57BD09001861D1 /* ConfigKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32237B32B57BD09001861D1 /* ConfigKey.swift */; };
+		C32237B62B57CA70001861D1 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32237B52B57CA70001861D1 /* SettingTableViewCell.swift */; };
 		C329CE602B4B9532005FBF62 /* DSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329CE5F2B4B9532005FBF62 /* DSViewController.swift */; };
 		C329CE622B4BA8D2005FBF62 /* InformationPremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329CE612B4BA8D2005FBF62 /* InformationPremiumView.swift */; };
 		C329CE642B4BE43A005FBF62 /* UiltFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329CE632B4BE43A005FBF62 /* UiltFormat.swift */; };
@@ -102,6 +104,8 @@
 		C32237AA2B5673F4001861D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../Sources/App/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C32237AD2B56789C001861D1 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		C32237B12B57726C001861D1 /* ApiWallpapers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiWallpapers.swift; sourceTree = "<group>"; };
+		C32237B32B57BD09001861D1 /* ConfigKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigKey.swift; sourceTree = "<group>"; };
+		C32237B52B57CA70001861D1 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C329CE5F2B4B9532005FBF62 /* DSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSViewController.swift; sourceTree = "<group>"; };
 		C329CE612B4BA8D2005FBF62 /* InformationPremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPremiumView.swift; sourceTree = "<group>"; };
 		C329CE632B4BE43A005FBF62 /* UiltFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiltFormat.swift; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				C329CE672B4BF892005FBF62 /* SettingViewController.swift */,
+				C32237B52B57CA70001861D1 /* SettingTableViewCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 			children = (
 				BE2C22DF22A8F134003526A6 /* AppDelegate.swift */,
 				C31987DE2B4E4A1A000640BA /* ConfigColor.swift */,
+				C32237B32B57BD09001861D1 /* ConfigKey.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34ABFE52B47F23800C8D7E5 /* ContinueButton.swift in Sources */,
+				C32237B62B57CA70001861D1 /* SettingTableViewCell.swift in Sources */,
 				C308B8912B4CF2340084CF1C /* OBViewController.swift in Sources */,
 				C34ABFE32B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift in Sources */,
 				BE2C22E222A8F134003526A6 /* AppDelegate.swift in Sources */,
@@ -633,6 +640,7 @@
 				C329CE642B4BE43A005FBF62 /* UiltFormat.swift in Sources */,
 				C31987DF2B4E4A1A000640BA /* ConfigColor.swift in Sources */,
 				C308B8932B4CF9040084CF1C /* OB1CollectionViewCell.swift in Sources */,
+				C32237B42B57BD09001861D1 /* ConfigKey.swift in Sources */,
 				C308B8952B4D066E0084CF1C /* OB2CollectionViewCell.swift in Sources */,
 				C39D0D542B54D29D000B43FE /* MainViewModel.swift in Sources */,
 				C3B9BF522B50F91400DCA83B /* CustomActivityIndicator.swift in Sources */,

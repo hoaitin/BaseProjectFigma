@@ -30,7 +30,8 @@ class InformationPremiumView: UIView {
         iconImage.contentMode = .scaleAspectFit
         
         titleLabel.textColor = .white
-        titleLabel.font = .systemFont(ofSize: 14)
+        titleLabel.font = UIFont(name: "OpenSans-SemiBold", size: 14)
+        titleLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         titleLabel.textAlignment = .left
         
     }
@@ -55,15 +56,15 @@ class InformationPremiumView: UIView {
     }
     
     var icon: UIImage? {
-            didSet {
-                iconImage.image = icon
-            }
+        didSet {
+            iconImage.image = icon
         }
+    }
 
     var infoText: String? {
-            didSet {
-                titleLabel.text = infoText
-            }
+        didSet {
+            titleLabel.text = infoText
+        }
     }
     
    

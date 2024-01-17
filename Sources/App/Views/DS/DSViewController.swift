@@ -31,8 +31,14 @@ class DSViewController: UIViewController{
     private lazy var iconSecuredImage = UIImageView()
     private lazy var textSecuredlabel = UILabel()
     private lazy var continueButton = ContinueButton()
-    private lazy var titleFooterLabel = UILabel()
     private lazy var backButton = UIButton()
+    
+    private lazy var listbuttonView = UIButton()
+    private lazy var restorePurchaseButton = UIButton()
+    private lazy var termButton = UIButton()
+    private lazy var policeButton = UIButton()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +50,9 @@ class DSViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
-        if hasLaunchedBefore {
-            backButton.isHidden = false
-        }
+        
+        backButton.isHidden = false
+        
     }
     
     func setUpViews() {
@@ -90,7 +95,7 @@ class DSViewController: UIViewController{
         itemRemoveInformationView.infoText = "Remove Ads"
         
         let gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 60), colors: [ConfigColor.colorBorderButtonStart,ConfigColor.colorBorderButtonEnd ])
-        buyButton.backgroundColor = .black
+        buyButton.backgroundColor = UIColor(hex: 0x0f213d)
         buyButton.layer.cornerRadius = 30
         buyButton.layer.borderColor = UIColor(patternImage: gradient).cgColor
         buyButton.layer.borderWidth = 2
@@ -109,8 +114,8 @@ class DSViewController: UIViewController{
         
         textSecuredlabel.text = "Secured with iTunes. Billed once."
         textSecuredlabel.textColor = .gray
-        textSecuredlabel.font = UIFont(name: "OpenSans-Text", size: 13)
-        textSecuredlabel.font = .systemFont(ofSize: 13)
+        textSecuredlabel.font = UIFont(name: "OpenSans-semiBold", size: 13)
+        textSecuredlabel.font = .systemFont(ofSize: 13, weight: .semibold)
         textSecuredlabel.textAlignment = .right
         
         continueButton.setTitle("Continue", for: .normal)
@@ -124,11 +129,32 @@ class DSViewController: UIViewController{
         continueButton.layer.masksToBounds = false
         continueButton.addTarget(self, action: #selector(handleClickNextView), for: .touchUpInside)
         
-        titleFooterLabel.text = "Restore Purchase | Terms | Policy"
-        titleFooterLabel.textColor = .gray
-        titleFooterLabel.font = UIFont(name: "OpenSans-Text", size: 13)
-        titleFooterLabel.font = .systemFont(ofSize: 13)
-        titleFooterLabel.textAlignment = .center
+//        titleFooterLabel.text = "Restore Purchase | Terms | Policy"
+        restorePurchaseButton.setTitle("Restore Purchase", for: .normal)
+        restorePurchaseButton.setTitleColor(.gray, for: .normal)
+        restorePurchaseButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
+        restorePurchaseButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
+        
+        termButton.setTitle("Terms", for: .normal)
+        termButton.setTitleColor(.gray, for: .normal)
+        termButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
+        termButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
+        // Add border to the left
+        let leftBorder = CALayer()
+        leftBorder.frame = CGRect(x: 0, y: 0, width: 1, height: 18)
+        leftBorder.backgroundColor = UIColor.gray.cgColor
+        termButton.layer.addSublayer(leftBorder)
+
+        // Add border to the right
+        let rightBorder = CALayer()
+        rightBorder.frame = CGRect(x: 48 - 1, y: 0, width: 1, height: 18)
+        rightBorder.backgroundColor = UIColor.gray.cgColor
+        termButton.layer.addSublayer(rightBorder)
+        
+        policeButton.setTitle("Police", for: .normal)
+        policeButton.setTitleColor(.gray, for: .normal)
+        policeButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
+        policeButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
         
         backButton.setImage(UIImage(named:"icon_close"), for: .normal)
         backButton.addTarget(self, action: #selector(backView), for: .touchUpInside)
@@ -159,10 +185,14 @@ class DSViewController: UIViewController{
         
         footerView.addSubview(securedView)
         footerView.addSubview(continueButton)
-        footerView.addSubview(titleFooterLabel)
-        
+        footerView.addSubview(listbuttonView)
+     
         securedView.addSubview(iconSecuredImage)
         securedView.addSubview(textSecuredlabel)
+        
+        listbuttonView.addSubview(restorePurchaseButton)
+        listbuttonView.addSubview(termButton)
+        listbuttonView.addSubview(policeButton)
         
         backButton.snp.makeConstraints{
             $0.top.equalToSuperview().offset(47)
@@ -265,7 +295,7 @@ class DSViewController: UIViewController{
         
         textSecuredlabel.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 208, height: 18))
+            $0.size.equalTo(CGSize(width: 215, height: 18))
             $0.centerX.equalToSuperview()
         }
         
@@ -275,22 +305,44 @@ class DSViewController: UIViewController{
             $0.size.equalTo(CGSize(width: 350, height: 60))
         }
         
-        titleFooterLabel.snp.makeConstraints{
+        listbuttonView.snp.makeConstraints{
+            $0.bottom.equalToSuperview().offset(-33)
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(continueButton.snp.bottom).offset(15)
-            $0.size.equalTo(CGSize(width: 210, height: 18))
+            $0.size.equalTo(CGSize(width: 230, height: 18))
         }
+        
+        restorePurchaseButton.snp.makeConstraints{
+            $0.leading.equalToSuperview()
+            $0.size.equalTo(CGSize(width: 120, height: 18))
+        }
+        
+        termButton.snp.makeConstraints{
+            $0.leading.equalTo(restorePurchaseButton.snp.trailing)
+            $0.size.equalTo(CGSize(width: 48, height: 18))
+        }
+        
+         policeButton.snp.makeConstraints{
+            $0.leading.equalTo(termButton.snp.trailing)
+            $0.size.equalTo(CGSize(width: 48, height: 18))
+        }
+    
         
     }
     
     @objc func backView(){
-        dismiss(animated: true, completion: nil)
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: ConfigKey.hasLaunchedBefore)
+        if hasLaunchedBefore{
+            dismiss(animated: true, completion: nil)
+        }else{
+            UserDefaults.standard.set(true, forKey: ConfigKey.hasLaunchedBefore)
+            let view = MainViewController()
+            navigationController?.pushViewController(view, animated: true)
+        }
+        
     }
     
     @objc func handleClickNextView(){
-        UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-        let view = MainViewController()
-        navigationController?.pushViewController(view, animated: true)
+      
     }
     
     

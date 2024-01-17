@@ -63,7 +63,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     func setAction(){
-        let gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: 100, height: 100), colors: [UIColor(hex: 0xE8FF8E), UIColor(hex: 0x58E0F5)])
+        let gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: 100, height: 100), colors: [ConfigColor.colorContinueButtonStart, ConfigColor.colorBorderButtonEnd])
         categoryImage.layer.borderWidth = 5
         categoryImage.layer.borderColor = UIColor(patternImage: gradient).cgColor
     }

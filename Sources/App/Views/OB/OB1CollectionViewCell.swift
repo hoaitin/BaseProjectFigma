@@ -35,7 +35,7 @@ class OB1CollectionViewCell: UICollectionViewCell {
         navbarTextlabel.text = "High Quality 4K Wallpapers"
         navbarTextlabel.textAlignment = .center
         navbarTextlabel.font = UIFont(name: "SP-Pro-Text-Heavy", size: 36)
-        navbarTextlabel.font = .systemFont(ofSize: 36)
+        navbarTextlabel.font = .boldSystemFont(ofSize: 32)
         navbarTextlabel.numberOfLines = 2
 
     }
