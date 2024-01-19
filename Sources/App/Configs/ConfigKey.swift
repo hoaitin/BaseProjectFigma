@@ -11,4 +11,5 @@ class ConfigKey{
     public static let hasLaunchedBefore = "hasLaunchedBefore"
     public static let images = "images"
     public static let isPurchase =  "isPurchase"
+    public static let set_text_view_splash = "set_text_view_splash"
 }

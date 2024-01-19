@@ -40,6 +40,8 @@ class DSViewController: UIViewController{
     private lazy var policeButton = UIButton()
     private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     
+    var delegate: Delegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -357,10 +359,16 @@ class DSViewController: UIViewController{
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.activityIndicator.stopAnimating()
             UserDefaults.standard.set(true, forKey:ConfigKey.isPurchase)
-            UserDefaults.standard.set(true, forKey: ConfigKey.hasLaunchedBefore)
             AnalyticsManager.share.logEvent(name: "purchased", parameters: ["Value": UiltFormat.share.formatTime()])
-            let view = MainViewController()
-            self.navigationController?.pushViewController(view, animated: true)
+            let hasLaunchedBefore = UserDefaults.standard.bool(forKey: ConfigKey.hasLaunchedBefore)
+            if hasLaunchedBefore{
+                self.delegate?.isPremium(value: true)
+                self.dismiss(animated: true, completion: nil)
+            }else{
+                UserDefaults.standard.set(true, forKey: ConfigKey.hasLaunchedBefore)
+                let view = MainViewController()
+                self.navigationController?.pushViewController(view, animated: true)
+            }
         }
     
         

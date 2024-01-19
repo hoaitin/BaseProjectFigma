@@ -37,7 +37,6 @@ class SplashViewController: UIViewController{
         
         navbarTextlabel.gradientColors = [UIColor(hex: 0xE8FF8E).cgColor, UIColor(hex: 0x58E0F5).cgColor]
         navbarTextlabel.textAlignment = .center
-        navbarTextlabel.text = "Anime 4K Wallpaper"
         navbarTextlabel.font = UIFont(name: "SF-Pro-Text-Heavy", size: 48)
         navbarTextlabel.font = .systemFont(ofSize: 48, weight: .heavy)
         navbarTextlabel.numberOfLines = 2
@@ -45,6 +44,18 @@ class SplashViewController: UIViewController{
         navbarTextlabel.layer.shadowRadius = 2
         navbarTextlabel.layer.shadowOpacity = 0.08
         navbarTextlabel.layer.shadowOffset = .init(width: 0, height: 2)
+        RemoteConfigManager.share.fetchRemoteConfigValues(key: ConfigKey.set_text_view_splash){
+            isSuccess,data,message in
+            if(isSuccess){
+                if  let value = data as? String {
+                    DispatchQueue.main.async {
+                        self.navbarTextlabel.text = value
+                    }
+                
+                }
+            }
+            
+        }
         
         
         textLabel.text = "Made by Tiny Leo"

@@ -13,6 +13,8 @@ def common_pods
   pod 'Firebase/RemoteConfig'
   pod 'DGActivityIndicatorView'
   pod 'Kingfisher'
+  pod 'Toast-Swift'
+  pod 'Firebase/RemoteConfig'
   pod 'NVActivityIndicatorView'
   pod 'RxSwift', '6.1.0'
   pod 'RxCocoa', '6.1.0'

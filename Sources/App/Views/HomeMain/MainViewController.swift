@@ -7,8 +7,9 @@ import Kingfisher
 import NVActivityIndicatorView
 import RxSwift
 import RxCocoa
+import Toast_Swift
 
-class MainViewController: UIViewController{
+class MainViewController: UIViewController,Delegate{
     private lazy var backgroundImageView = UIImageView()
     private lazy var textLabel = UILabel()
     private lazy var bannerTimeImage = UIImageView()
@@ -33,6 +34,7 @@ class MainViewController: UIViewController{
     let disP = DisposeBag()
     private let apiWallpapers = ApiWallpapers.share
     private let anilytics = AnalyticsManager.share
+    let isPurchase  = UserDefaults.standard.bool(forKey: ConfigKey.isPurchase)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +47,7 @@ class MainViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let isPurchase  = UserDefaults.standard.bool(forKey: ConfigKey.isPurchase)
-        if(isPurchase){
-            kingButton.isHidden = true
-        }
-        if shouldPerformViewDidAppear {
+                if shouldPerformViewDidAppear {
             PostService.share.fetchAllCategories(){
                 (isSuccess,data,message) in
                 if(isSuccess){
@@ -85,6 +83,10 @@ class MainViewController: UIViewController{
         kingButton.setImage(UIImage(named: "icon_king"), for: .normal)
         kingButton.imageView?.contentMode = .scaleAspectFit
         kingButton.addTarget(self, action: #selector(nextDS), for: .touchUpInside)
+    
+        if(isPurchase){
+            kingButton.isHidden = true
+        }
         
         refreshButton.setImage(UIImage(named: "icon_refresh"), for: .normal)
         refreshButton.imageView?.contentMode = .scaleAspectFit
@@ -267,6 +269,7 @@ class MainViewController: UIViewController{
     @objc func nextDS(){
         let view = DSViewController()
         view.modalPresentationStyle = .fullScreen
+        view.delegate = self
         present(view, animated: true)
     }
     
@@ -308,11 +311,7 @@ class MainViewController: UIViewController{
    }
     
     func showErrorMessageAlert(message: String) {
-            alert = UIAlertController(title: "Notice", message: message, preferredStyle: .alert)
-            present(alert, animated: true, completion: nil)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.alert.dismiss(animated: true, completion: nil)
-            }
+        self.view.makeToast(message, duration: 3.0, position: .center)
     }
     
     
@@ -430,6 +429,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
       
         selectedIndexPath = indexPath
         
+    }
+    func isPremium(value: Bool) {
+        if value {
+            kingButton.isHidden = true
+        }
     }
     
 }

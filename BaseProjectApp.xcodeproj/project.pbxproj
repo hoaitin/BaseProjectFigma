@@ -38,6 +38,9 @@
 		C34ABFE32B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34ABFE22B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift */; };
 		C34ABFE52B47F23800C8D7E5 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34ABFE42B47F23800C8D7E5 /* ContinueButton.swift */; };
 		C355A0E22B58C73700DCC119 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355A0E12B58C73700DCC119 /* AnalyticsManager.swift */; };
+		C355A0E52B5A2B9200DCC119 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355A0E42B5A2B9200DCC119 /* RemoteConfigManager.swift */; };
+		C355A0E92B5A39E700DCC119 /* ConfigValueDeffault.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355A0E82B5A39E700DCC119 /* ConfigValueDeffault.swift */; };
+		C355A0EB2B5A3E4B00DCC119 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355A0EA2B5A3E4B00DCC119 /* Delegate.swift */; };
 		C3570BBF2B55273800942D6A /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3570BBE2B55273800942D6A /* UIImageViewExtension.swift */; };
 		C39D0D502B54D01E000B43FE /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D0D4F2B54D01E000B43FE /* CategoryItem.swift */; };
 		C39D0D522B54D127000B43FE /* FileJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D0D512B54D127000B43FE /* FileJson.swift */; };
@@ -116,6 +119,9 @@
 		C34ABFE22B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		C34ABFE42B47F23800C8D7E5 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		C355A0E12B58C73700DCC119 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		C355A0E42B5A2B9200DCC119 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		C355A0E82B5A39E700DCC119 /* ConfigValueDeffault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigValueDeffault.swift; sourceTree = "<group>"; };
+		C355A0EA2B5A3E4B00DCC119 /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
 		C3570BBE2B55273800942D6A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		C39D0D4F2B54D01E000B43FE /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		C39D0D512B54D127000B43FE /* FileJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileJson.swift; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 		BE2C22A322A8EE6C003526A6 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				C355A0E32B5A2B7800DCC119 /* RemoteConfig */,
 				C355A0E02B58C70600DCC119 /* Analytics */,
 				C32237AC2B567852001861D1 /* Api */,
 				C3B6326C2B3BD5E900095CE2 /* Uilt */,
@@ -353,6 +360,14 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+		C355A0E32B5A2B7800DCC119 /* RemoteConfig */ = {
+			isa = PBXGroup;
+			children = (
+				C355A0E42B5A2B9200DCC119 /* RemoteConfigManager.swift */,
+			);
+			path = RemoteConfig;
+			sourceTree = "<group>";
+		};
 		C3570BBD2B55272000942D6A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +405,7 @@
 			children = (
 				C329CE632B4BE43A005FBF62 /* UiltFormat.swift */,
 				C39D0D512B54D127000B43FE /* FileJson.swift */,
+				C355A0EA2B5A3E4B00DCC119 /* Delegate.swift */,
 			);
 			name = Uilt;
 			sourceTree = "<group>";
@@ -430,6 +446,7 @@
 				BE2C22DF22A8F134003526A6 /* AppDelegate.swift */,
 				C31987DE2B4E4A1A000640BA /* ConfigColor.swift */,
 				C32237B32B57BD09001861D1 /* ConfigKey.swift */,
+				C355A0E82B5A39E700DCC119 /* ConfigValueDeffault.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -638,14 +655,17 @@
 				C308B8912B4CF2340084CF1C /* OBViewController.swift in Sources */,
 				C34ABFE32B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift in Sources */,
 				BE2C22E222A8F134003526A6 /* AppDelegate.swift in Sources */,
+				C355A0E52B5A2B9200DCC119 /* RemoteConfigManager.swift in Sources */,
 				247DA2342B348C2800487563 /* MainViewController.swift in Sources */,
 				C32237AE2B56789C001861D1 /* PostService.swift in Sources */,
 				24ECFB8B290294DA008F7DA5 /* R.generated.swift in Sources */,
 				C329CE682B4BF892005FBF62 /* SettingViewController.swift in Sources */,
+				C355A0E92B5A39E700DCC119 /* ConfigValueDeffault.swift in Sources */,
 				C34ABFDF2B47C0B900C8D7E5 /* GradientLabel.swift in Sources */,
 				C32237B22B57726C001861D1 /* ApiWallpapers.swift in Sources */,
 				C3570BBF2B55273800942D6A /* UIImageViewExtension.swift in Sources */,
 				C329CE622B4BA8D2005FBF62 /* InformationPremiumView.swift in Sources */,
+				C355A0EB2B5A3E4B00DCC119 /* Delegate.swift in Sources */,
 				C34ABFDB2B47B63600C8D7E5 /* SplashViewController.swift in Sources */,
 				C355A0E22B58C73700DCC119 /* AnalyticsManager.swift in Sources */,
 				C31987F22B4FBA8A000640BA /* RequestApi.swift in Sources */,
