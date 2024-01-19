@@ -11,6 +11,8 @@ import Foundation
 import UIKit
 import SnapKit
 import CoreLocation
+import NVActivityIndicatorView
+import FirebaseAnalytics
 
 class DSViewController: UIViewController{
     private lazy var backgroundView = UIView()
@@ -32,11 +34,12 @@ class DSViewController: UIViewController{
     private lazy var textSecuredlabel = UILabel()
     private lazy var continueButton = ContinueButton()
     private lazy var backButton = UIButton()
-    
     private lazy var listbuttonView = UIButton()
     private lazy var restorePurchaseButton = UIButton()
     private lazy var termButton = UIButton()
     private lazy var policeButton = UIButton()
+    private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +53,7 @@ class DSViewController: UIViewController{
         super.viewDidAppear(animated)
         
         backButton.isHidden = false
+        
     }
     
     func setUpViews() {
@@ -57,19 +61,19 @@ class DSViewController: UIViewController{
         
         backgroundImageView.image = UIImage(named: "background_DS_1")
         backgroundImageView.contentMode = .scaleAspectFill
-        backgroundView.layer.addSublayer(UiltFormat.share.setGrandientShowdow(yourWidth: Int(view.frame.width), yourHeight: 172,y: 300))
+        backgroundView.layer.addSublayer(UiltFormat.share.setGrandientShowdow(yourWidth: Int(view.frame.width), yourHeight: 200,y: 300))
         containerView.clipsToBounds = true
         
         let attributedText = NSMutableAttributedString(string: "Unlock Premium")
         // Đặt kích thước và độ đậm chữ cho phần đầu của văn bản
-        let font1 = UIFont.systemFont(ofSize: 20, weight: .medium)
+        let font1 = UIFont.systemFont(ofSize: 24, weight: .regular)
         let attributes1: [NSAttributedString.Key: Any] = [
             .font: font1,
             .foregroundColor: UIColor.white
         ]
         attributedText.addAttributes(attributes1, range: NSRange(location: 0, length: 6))
         // Đặt kích thước và độ đậm chữ cho phần cuối của văn bản
-        let font2 = UIFont.systemFont(ofSize: 30, weight: .bold)
+        let font2 = UIFont.systemFont(ofSize: 28, weight: .bold )
         let attributes2: [NSAttributedString.Key: Any] = [
             .font: font2,
             .foregroundColor: UIColor.white
@@ -128,12 +132,12 @@ class DSViewController: UIViewController{
         
 //        titleFooterLabel.text = "Restore Purchase | Terms | Policy"
         restorePurchaseButton.setTitle("Restore Purchase", for: .normal)
-        restorePurchaseButton.setTitleColor(.gray, for: .normal)
+        restorePurchaseButton.setTitleColor( UIColor(hex: 0x969696), for: .normal)
         restorePurchaseButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
         restorePurchaseButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
         
         termButton.setTitle("Terms", for: .normal)
-        termButton.setTitleColor(.gray, for: .normal)
+        termButton.setTitleColor( UIColor(hex: 0x717585), for: .normal)
         termButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
         termButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
         // Add border to the left
@@ -149,13 +153,16 @@ class DSViewController: UIViewController{
         termButton.layer.addSublayer(rightBorder)
         
         policeButton.setTitle("Police", for: .normal)
-        policeButton.setTitleColor(.gray, for: .normal)
+        policeButton.setTitleColor(UIColor(hex: 0x717585), for: .normal)
         policeButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
         policeButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
         
         backButton.setImage(UIImage(named:"icon_close"), for: .normal)
         backButton.addTarget(self, action: #selector(backView), for: .touchUpInside)
         backButton.isHidden = true
+        
+        activityIndicator.type = .ballSpinFadeLoader
+        activityIndicator.color = UIColor(hex: 0x4ABEFE)
     }
     
     func setUpConstraints() {
@@ -163,6 +170,7 @@ class DSViewController: UIViewController{
         view.addSubview(containerView)
         view.addSubview(footerView)
         view.addSubview(backButton)
+        view.addSubview(activityIndicator)
         backgroundView.addSubview(backgroundImageView)
         
         containerView.addSubview(contentView)
@@ -200,6 +208,11 @@ class DSViewController: UIViewController{
         backgroundView.snp.makeConstraints{
             $0.top.equalToSuperview()
             $0.size.equalTo(CGSize(width: view.frame.width , height: 472))
+        }
+        
+        activityIndicator.snp.makeConstraints{
+            $0.center.equalToSuperview()
+            $0.size.equalTo(CGSize(width: 100, height: 100))
         }
         
         backgroundImageView.snp.makeConstraints{
@@ -322,6 +335,8 @@ class DSViewController: UIViewController{
             $0.leading.equalTo(termButton.snp.trailing)
             $0.size.equalTo(CGSize(width: 48, height: 18))
         }
+    
+        
     }
     
     @objc func backView(){
@@ -337,7 +352,18 @@ class DSViewController: UIViewController{
     }
     
     @objc func handleClickNextView(){
-      
+        activityIndicator.startAnimating()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.activityIndicator.stopAnimating()
+            UserDefaults.standard.set(true, forKey:ConfigKey.isPurchase)
+            UserDefaults.standard.set(true, forKey: ConfigKey.hasLaunchedBefore)
+            AnalyticsManager.share.logEvent(name: "purchased", parameters: ["Value": UiltFormat.share.formatTime()])
+            let view = MainViewController()
+            self.navigationController?.pushViewController(view, animated: true)
+        }
+    
+        
     }
     
     

@@ -26,6 +26,7 @@ class OB1CollectionViewCell: UICollectionViewCell {
         setUpConstraints()
     }
     
+    
     func setUpView(){
         backgroundImageView.image = UIImage(named: "surrealistic_wallpaper_21_origin 1")
         backgroundImageView.contentMode = .scaleAspectFill
@@ -34,7 +35,7 @@ class OB1CollectionViewCell: UICollectionViewCell {
         navbarTextlabel.text = "High Quality 4K Wallpapers"
         navbarTextlabel.textAlignment = .center
         navbarTextlabel.font = UIFont(name: "SP-Pro-Text-Heavy", size: 36)
-        navbarTextlabel.font = .boldSystemFont(ofSize: 32)
+        navbarTextlabel.font = .systemFont(ofSize: 36, weight: .heavy)
         navbarTextlabel.numberOfLines = 2
 
     }
@@ -50,7 +51,7 @@ class OB1CollectionViewCell: UICollectionViewCell {
         navbarTextlabel.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-156)
-            $0.size.equalTo(CGSize(width: 230, height: 92))
+            $0.size.equalTo(CGSize(width: 300, height: 92))
         }
         
     }

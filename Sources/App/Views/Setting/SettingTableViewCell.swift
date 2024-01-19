@@ -15,6 +15,7 @@ class SettingTableViewCell: UITableViewCell {
     public lazy var titleLabel = UILabel()
     public lazy var iconImageView = UIImageView()
     
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -72,4 +73,5 @@ class SettingTableViewCell: UITableViewCell {
     
     }
     
+ 
 }

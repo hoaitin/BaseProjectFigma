@@ -26,8 +26,8 @@ class SplashViewController: UIViewController{
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        sleep(2)
+     
+                sleep(2)
         self.nextPageHasLaunchedBefore()
     }
     
@@ -38,12 +38,14 @@ class SplashViewController: UIViewController{
         navbarTextlabel.gradientColors = [UIColor(hex: 0xE8FF8E).cgColor, UIColor(hex: 0x58E0F5).cgColor]
         navbarTextlabel.textAlignment = .center
         navbarTextlabel.text = "Anime 4K Wallpaper"
-        navbarTextlabel.font = UIFont(name: "OpenSans-SemiBold", size: 48)
+        navbarTextlabel.font = UIFont(name: "SF-Pro-Text-Heavy", size: 48)
+        navbarTextlabel.font = .systemFont(ofSize: 48, weight: .heavy)
         navbarTextlabel.numberOfLines = 2
         navbarTextlabel.layer.shadowColor = UIColor.black.cgColor
         navbarTextlabel.layer.shadowRadius = 2
         navbarTextlabel.layer.shadowOpacity = 0.08
         navbarTextlabel.layer.shadowOffset = .init(width: 0, height: 2)
+        
         
         textLabel.text = "Made by Tiny Leo"
         textLabel.textColor = .white
@@ -73,6 +75,7 @@ class SplashViewController: UIViewController{
             $0.top.equalToSuperview().offset(100)
             $0.size.equalTo(CGSize(width: 268, height: 150))
         }
+        
         
     }
     

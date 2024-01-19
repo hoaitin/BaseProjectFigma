@@ -41,7 +41,7 @@ struct _R {
     let developmentRegion = "en"
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 97 images.
+  /// This `_R.image` struct is generated, and contains static references to 98 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -317,6 +317,9 @@ struct _R {
 
     /// Image `tabbar_setting_dark`.
     var tabbar_setting_dark: RswiftResources.ImageResource { .init(name: "tabbar_setting_dark", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `titleNav`.
+    var titleNav: RswiftResources.ImageResource { .init(name: "titleNav", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `woman`.
     var woman: RswiftResources.ImageResource { .init(name: "woman", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }

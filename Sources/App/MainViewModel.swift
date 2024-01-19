@@ -54,9 +54,12 @@ class MainViewModel{
         return false
     }
     
-    func randomImage(images: [String]) ->String? {
-        if let image = images.randomElement() {
-            return image
+    func randomImage(images: [String], imageOld: String) ->String? {
+        while true && images.count > 1 {
+               if let image = images.randomElement(), image != imageOld {
+                 return image
+                
+               }
         }
         return nil
     }

@@ -21,18 +21,18 @@ class MainViewController: UIViewController{
     private lazy var categoriesView = UIView()
     private lazy var alert = UIAlertController()
     private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-    
     private lazy var centerButton = UIButton()
+    
     private var categories: [CategoryItem] = []
     private var category: CategoryItem?
     private var listImage:[String] = []
     private var image:String?
     private var shouldPerformViewDidAppear = true
     private var selectedIndexPath: IndexPath?
-
     var isShowCate = false
     let disP = DisposeBag()
     private let apiWallpapers = ApiWallpapers.share
+    private let anilytics = AnalyticsManager.share
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,10 @@ class MainViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        let isPurchase  = UserDefaults.standard.bool(forKey: ConfigKey.isPurchase)
+        if(isPurchase){
+            kingButton.isHidden = true
+        }
         if shouldPerformViewDidAppear {
             PostService.share.fetchAllCategories(){
                 (isSuccess,data,message) in
@@ -154,7 +157,7 @@ class MainViewController: UIViewController{
         }
         
         headerView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(40)
+            $0.top.equalToSuperview().offset(47)
             $0.size.equalTo(CGSize(width: view.frame.width, height: 40))
         }
         
@@ -173,7 +176,7 @@ class MainViewController: UIViewController{
         downloadButton.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.size.equalTo(CGSize(width: 40, height: 40))
-            $0.right.equalToSuperview().offset(-10)
+            $0.right.equalToSuperview().offset(-20)
         }
         
         refreshButton.snp.makeConstraints{
@@ -189,8 +192,9 @@ class MainViewController: UIViewController{
         }
         
         categoriesCollectionView.snp.makeConstraints{
-            $0.bottom.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(150)
+            $0.bottom.equalToSuperview().offset(-16)
         }
     }
     
@@ -233,6 +237,8 @@ class MainViewController: UIViewController{
         case .left:
             if !self.listImage.isEmpty , let image = self.image {
                 if let  imageItem = MainViewModel.share.backImage(imageItem: image, listImage: self.listImage){
+                    self.isShowCate = false
+                    stateCategory(isShow: false)
                     self.image = imageItem
                     self.getImage(image: imageItem)
                     
@@ -243,6 +249,8 @@ class MainViewController: UIViewController{
                 if let  imageItem = MainViewModel.share.nextImage(imageItem: image, listImage: self.listImage){
                     self.image = imageItem
                     self.getImage(image: imageItem)
+                    self.isShowCate = false
+                    stateCategory(isShow: false)
                 }
             }
         default:
@@ -265,10 +273,9 @@ class MainViewController: UIViewController{
     @objc func handleShuffle(){
         self.shuffleListImage()
         if !self.listImage.isEmpty {
-            if let  imageItem = MainViewModel.share.randomImage(images: listImage){
+            if let  imageItem = MainViewModel.share.randomImage(images: listImage, imageOld: self.image ?? ""){
                 self.image = imageItem
                 self.getImage(image: imageItem)
-                
             }
         }
     }
@@ -278,6 +285,7 @@ class MainViewController: UIViewController{
             apiWallpapers.getWallpaperByName(category: self.category!.id, name: nameImage){
                 (isSuccess,data,message) in
                 if(isSuccess){
+                    self.anilytics.logEvent(name: "click_download_image",parameters: ["nameImage": nameImage])
                     if let imageView = UIImage(data: data as! Data) {
                         UIImageWriteToSavedPhotosAlbum(imageView, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
                     }
@@ -300,11 +308,13 @@ class MainViewController: UIViewController{
    }
     
     func showErrorMessageAlert(message: String) {
-           let alert = UIAlertController(title: "Notice", message: message, preferredStyle: .alert)
-           let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-           alert.addAction(okAction)
-           present(alert, animated: true, completion: nil)
+            alert = UIAlertController(title: "Notice", message: message, preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.alert.dismiss(animated: true, completion: nil)
+            }
     }
+    
     
     func shuffleListImage(){
         self.listImage.shuffle()
@@ -318,7 +328,7 @@ class MainViewController: UIViewController{
                     if let images = data as? [String]{
                         self.listImage = images
                         self.shuffleListImage()
-                        if let nameImage = MainViewModel.share.randomImage(images: images) {
+                        if let nameImage = MainViewModel.share.randomImage(images: images, imageOld: self.image ?? "") {
                             self.image = nameImage
                             self.getImage(image: nameImage)
                         }
@@ -371,7 +381,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         self.categoriesCollectionView.dataSource = self
         self.categoriesCollectionView.delegate = self
         if let flowLayout = self.categoriesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+            flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         }
     }
     

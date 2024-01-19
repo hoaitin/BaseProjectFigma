@@ -66,9 +66,15 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         let gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: 100, height: 100), colors: [ConfigColor.colorContinueButtonStart, ConfigColor.colorBorderButtonEnd])
         categoryImage.layer.borderWidth = 5
         categoryImage.layer.borderColor = UIColor(patternImage: gradient).cgColor
+        
+        nameCategoryLabel.font = UIFont(name: "SF-Pro-Text-Heavy", size: 14)
+        nameCategoryLabel.font = .systemFont(ofSize: 14, weight: .heavy)
     }
     func hiddenAction(){
         categoryImage.layer.borderWidth = 0
+        
+        nameCategoryLabel.font = UIFont(name: "SF-Pro-Text-Medium", size: 14)
+        nameCategoryLabel.font = .systemFont(ofSize: 14, weight: .medium)
     }
     
 }

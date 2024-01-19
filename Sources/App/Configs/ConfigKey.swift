@@ -10,4 +10,5 @@ import Foundation
 class ConfigKey{
     public static let hasLaunchedBefore = "hasLaunchedBefore"
     public static let images = "images"
+    public static let isPurchase =  "isPurchase"
 }
