@@ -1,16 +1,16 @@
 {
   "images" : [
     {
+      "filename" : "titleNav.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "titleNav.png",
+      "filename" : "Anime 4K Wallpaper (1).png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Anime 4K Wallpaper (1).png",
       "idiom" : "universal",
       "scale" : "3x"
     }

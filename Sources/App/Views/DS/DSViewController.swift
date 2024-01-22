@@ -359,7 +359,7 @@ class DSViewController: UIViewController{
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.activityIndicator.stopAnimating()
             UserDefaults.standard.set(true, forKey:ConfigKey.isPurchase)
-            AnalyticsManager.share.logEvent(name: "purchased", parameters: ["Value": UiltFormat.share.formatTime()])
+            AnalyticsManager.share.logEvent(name: "purchased", parameters: ["Value": "lifetime"])
             let hasLaunchedBefore = UserDefaults.standard.bool(forKey: ConfigKey.hasLaunchedBefore)
             if hasLaunchedBefore{
                 self.delegate?.isPremium(value: true)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     static let id = "CategoryCollectionViewCell"
@@ -57,7 +58,14 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(category: CategoryItem){
-        categoryImage.image = UIImage(named: category.imageCategory)
+        UiltFormat.share.loadImage(from: category.imageCategory) { result in
+            switch result {
+            case .success(let image):
+                self.categoryImage.image = image
+            case .failure(let error):
+                print("Lỗi khi tải hình ảnh: \(error.localizedDescription)")
+            }
+        }
         nameCategoryLabel.text = category.nameCategory
      
     }

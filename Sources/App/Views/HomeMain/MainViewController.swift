@@ -47,20 +47,19 @@ class MainViewController: UIViewController,Delegate{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                if shouldPerformViewDidAppear {
-            PostService.share.fetchAllCategories(){
-                (isSuccess,data,message) in
-                if(isSuccess){
-                    if let categories = data as? [CategoryItem] {
-                        self.loadData(data: categories)
-                    }
-                }else{
-                    self.showErrorMessageAlert(message: message ?? "")
-                }
-            }
         
-        }
+        guard shouldPerformViewDidAppear else { return }
         shouldPerformViewDidAppear = false
+        
+        if let categoriesData = UserDefaults.standard.data(forKey: "categories") {
+            do {
+                  let decoder = JSONDecoder()
+                  let loadedCategoryItem = try decoder.decode([CategoryItem].self, from: categoriesData)
+                   self.loadData(data: loadedCategoryItem)
+              } catch {
+                  showErrorMessageAlert(message: "error not data")
+              }
+        }
     }
 
     func setUpViews() {
@@ -231,7 +230,9 @@ class MainViewController: UIViewController,Delegate{
         category = categories.first
         self.loadImage()
         selectedIndexPath = IndexPath(item: 0, section: 0)
-        categoriesCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.categoriesCollectionView.reloadData()
+        }
     }
     
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {

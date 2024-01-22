@@ -11,6 +11,7 @@ import UIKit
 class GradientLabel: UILabel {
     var gradientColors: [CGColor] = []
 
+
         override func drawText(in rect: CGRect) {
             if let gradientColor = drawGradientColor(in: rect, colors: gradientColors) {
                 self.textColor = gradientColor
@@ -41,5 +42,9 @@ class GradientLabel: UILabel {
             return UIColor(patternImage: image)
         }
 
+ 
 }
+
+    
+         
 

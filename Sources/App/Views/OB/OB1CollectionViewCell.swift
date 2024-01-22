@@ -37,7 +37,20 @@ class OB1CollectionViewCell: UICollectionViewCell {
         navbarTextlabel.font = UIFont(name: "SP-Pro-Text-Heavy", size: 36)
         navbarTextlabel.font = .systemFont(ofSize: 36, weight: .heavy)
         navbarTextlabel.numberOfLines = 2
-
+//            RemoteConfigManager.share.fetchRemoteConfigValues(key: ConfigKey.set_text_view_OB1){
+//                isSuccess,data,message in
+//                if(isSuccess){
+//                    if  let value = data as? String {
+//                        DispatchQueue.main.async {
+//                        
+//                            self.navbarTextlabel.text = value
+//                        }
+//                        
+//                    }
+//                }
+//                
+//            }
+     
     }
     
     func setUpConstraints(){
@@ -55,5 +68,7 @@ class OB1CollectionViewCell: UICollectionViewCell {
         }
         
     }
+  
+     
 }
 

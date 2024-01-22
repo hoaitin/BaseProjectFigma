@@ -14,7 +14,16 @@ import CoreLocation
 class SplashViewController: UIViewController{
     private lazy var backgroundImageView = UIImageView()
     private lazy var textLabel = UILabel()
-    private lazy var navbarTextlabel = GradientLabel()
+    private lazy var navbarTextImageView = UIImageView()
+    let remoteConfig =  RemoteConfigManager.share
+    let userDefaults = UserDefaults.standard
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+            sleep(5)
+//            self.nextPageHasLaunchedBefore()
+        self.testOnboarding()
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,41 +31,15 @@ class SplashViewController: UIViewController{
         
         setUpViews()
         setUpConstraints()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-     
-                sleep(2)
-        self.nextPageHasLaunchedBefore()
+        getData()
     }
     
     func setUpViews() {
         backgroundImageView.image = UIImage(named: "splash")
         backgroundImageView.contentMode = .scaleAspectFill // Adjust content mode as needed
-        
-        navbarTextlabel.gradientColors = [UIColor(hex: 0xE8FF8E).cgColor, UIColor(hex: 0x58E0F5).cgColor]
-        navbarTextlabel.textAlignment = .center
-        navbarTextlabel.font = UIFont(name: "SF-Pro-Text-Heavy", size: 48)
-        navbarTextlabel.font = .systemFont(ofSize: 48, weight: .heavy)
-        navbarTextlabel.numberOfLines = 2
-        navbarTextlabel.layer.shadowColor = UIColor.black.cgColor
-        navbarTextlabel.layer.shadowRadius = 2
-        navbarTextlabel.layer.shadowOpacity = 0.08
-        navbarTextlabel.layer.shadowOffset = .init(width: 0, height: 2)
-        RemoteConfigManager.share.fetchRemoteConfigValues(key: ConfigKey.set_text_view_splash){
-            isSuccess,data,message in
-            if(isSuccess){
-                if  let value = data as? String {
-                    DispatchQueue.main.async {
-                        self.navbarTextlabel.text = value
-                    }
-                
-                }
-            }
-            
-        }
-        
+     
+        navbarTextImageView.image = UIImage(named: "titleNav")
+        navbarTextImageView.contentMode = .scaleAspectFit
         
         textLabel.text = "Made by Tiny Leo"
         textLabel.textColor = .white
@@ -66,10 +49,12 @@ class SplashViewController: UIViewController{
         
     }
     
+ 
+    
     func setUpConstraints() {
         view.addSubview(backgroundImageView)
         view.addSubview(textLabel)
-        view.addSubview(navbarTextlabel)
+        view.addSubview(navbarTextImageView)
         
         backgroundImageView.snp.makeConstraints{
             $0.edges.equalToSuperview()
@@ -81,13 +66,22 @@ class SplashViewController: UIViewController{
             $0.size.equalTo(CGSize(width: 120, height: 20))
         }
         
-        navbarTextlabel.snp.makeConstraints{
+        navbarTextImageView.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(100)
-            $0.size.equalTo(CGSize(width: 268, height: 150))
+            $0.size.equalTo(CGSize(width: 280, height: 160))
         }
-        
-        
+    }
+    
+    func getData(){
+        var isLoadData =  userDefaults.bool(forKey: "loadData")
+        DispatchQueue.global().async {
+            while !isLoadData {
+                    sleep(2)
+                isLoadData = self.userDefaults.bool(forKey: "loadData")
+            }
+            
+        }
     }
     
     func nextPageHasLaunchedBefore(){
@@ -101,6 +95,27 @@ class SplashViewController: UIViewController{
             
         }
     }
+    
+    func testOnboarding(){
+        if let onboarding = userDefaults.string(forKey: "onboarding") {
+            print("======> \(onboarding)")
+            switch onboarding {
+            case "onboarding_v1":
+                 let view = View1Controller()
+                navigationController?.pushViewController(view, animated: true)
+            case "onboarding_v2":
+                let view = View2Controller()
+               navigationController?.pushViewController(view, animated: true)
+            case "onboarding_v3":
+                let view = View3Controller()
+               navigationController?.pushViewController(view, animated: true)
+            default: 
+                let view = View1Controller()
+               navigationController?.pushViewController(view, animated: true)
+            }
+            
+        }
+        
+    }
 
 }
-

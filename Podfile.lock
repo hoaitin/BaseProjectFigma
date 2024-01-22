@@ -1,6 +1,22 @@
 PODS:
   - Alamofire (5.8.1)
   - DGActivityIndicatorView (2.1.1)
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.15.1):
+    - FBSDKLoginKit/Login (= 5.15.1)
+  - FBSDKLoginKit/Login (5.15.1):
+    - FBSDKCoreKit (~> 5.0)
   - Firebase (10.16.0):
     - Firebase/Core (= 10.16.0)
   - Firebase/Analytics (10.16.0):
@@ -155,6 +171,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - DGActivityIndicatorView
+  - FacebookCore
+  - FacebookLogin
   - Firebase
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -173,6 +191,10 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - DGActivityIndicatorView
+    - FacebookCore
+    - FacebookLogin
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -208,6 +230,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   Firebase: 25899099b77d255a636e3579c3d9dce10ec150d5
   FirebaseABTesting: 03f0a8b88cf618350527f2c6a2234e29b9c65064
   FirebaseAnalytics: 7b41efc4eba5ff841cc94d5994b5f339361258f4
@@ -240,6 +266,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Toast-Swift: dd369e68ee529f542c65bd0d0c6c50cd743cf6f2
 
-PODFILE CHECKSUM: 2cdf422e8122c29c0143b99b98edb0b1e11d6f4f
+PODFILE CHECKSUM: 1ab50b424cc74063ae1e11ee014e4eafa64b310b
 
 COCOAPODS: 1.14.3

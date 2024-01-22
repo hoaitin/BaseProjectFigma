@@ -19,6 +19,8 @@ def common_pods
   pod 'RxSwift', '6.1.0'
   pod 'RxCocoa', '6.1.0'
   pod 'Alamofire'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
   
 end
 

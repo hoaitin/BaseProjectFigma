@@ -13,10 +13,10 @@ import NVActivityIndicatorView
 class MainViewModel{
     public static var share:MainViewModel = MainViewModel()
     
-    func loadImage(imageItem: ImageItem , backgroundImageView: UIImageView ,activityIndicator: NVActivityIndicatorView ,showErrorMessageAlert: @escaping (_ message: String) -> Void){
+    func loadImage(link: String , backgroundImageView: UIImageView){
 
-//            MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView)
-        let url = URL(string: imageItem.linkImage)
+//      MainViewModel.share.loadImage(imageItem: imageItem, backgroundImageView: backgroundImageView)
+        let url = URL(string:  link)
         let processor = DownsamplingImageProcessor(size: backgroundImageView.bounds.size)
         backgroundImageView.kf.indicatorType = .activity
         backgroundImageView.kf.setImage(
@@ -31,10 +31,9 @@ class MainViewModel{
         {
             result in
             switch result {
-            case .success(let value):
-                backgroundImageView.layer.contents = value.image.cgImage
+            case .success(let value): break
             case .failure(let error):
-                showErrorMessageAlert("Failed to load image.")
+                print("error")
             }
         }
     }
