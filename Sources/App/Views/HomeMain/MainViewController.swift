@@ -30,11 +30,14 @@ class MainViewController: UIViewController,Delegate{
     private var image:String?
     private var shouldPerformViewDidAppear = true
     private var selectedIndexPath: IndexPath?
+    private var ds: DS?
     var isShowCate = false
     let disP = DisposeBag()
     private let apiWallpapers = ApiWallpapers.share
     private let anilytics = AnalyticsManager.share
-    let isPurchase  = UserDefaults.standard.bool(forKey: ConfigKey.isPurchase)
+    var isPurchase  = UserDefaults.standard.bool(forKey: ConfigKey.isPurchase)
+    let userDefaults = UserDefaults.standard
+    var freeUsage: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,7 @@ class MainViewController: UIViewController,Delegate{
         setUpViews()
         setUpConstraints()
         setupRx()
+        getData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +75,7 @@ class MainViewController: UIViewController,Delegate{
         textLabel.textColor = .white
         textLabel.textAlignment = .center
         textLabel.font = UIFont(name: "OpenSans-Text", size: 14)
+        textLabel.isHidden = true
         
         bannerTimeImage.image = UIImage(named: "banner_time")
         bannerTimeImage.contentMode = .scaleAspectFill
@@ -214,6 +219,7 @@ class MainViewController: UIViewController,Delegate{
     // another
 
     func stateCategory(isShow: Bool) {
+      
         categoriesView.snp.updateConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(221)
@@ -222,7 +228,9 @@ class MainViewController: UIViewController,Delegate{
         
         UIView.animate(withDuration: TimeInterval(1.5)) {
             self.view.layoutIfNeeded()
+            self.textLabel.isHidden = self.isShowCate
         }
+       
     }
     
     func loadData(data: [CategoryItem]){
@@ -268,10 +276,24 @@ class MainViewController: UIViewController,Delegate{
     }
   
     @objc func nextDS(){
-        let view = DSViewController()
-        view.modalPresentationStyle = .fullScreen
-        view.delegate = self
-        present(view, animated: true)
+        self.selectViewDS()
+    }
+    
+    func selectViewDS(){
+        guard let dsData = self.ds else { return }
+        switch dsData.version {
+        case "directstore_ver1" :
+            var view = DSViewController()
+            view.modalPresentationStyle = .fullScreen
+            view.delegate = self
+            present(view, animated: true)
+        case "directstore_ver2" :
+           var view = DS2ViewController()
+            view.modalPresentationStyle = .fullScreen
+            view.delegate = self
+            present(view, animated: true)
+        default: break
+        }
     }
     
     @objc func handleShuffle(){
@@ -285,20 +307,46 @@ class MainViewController: UIViewController,Delegate{
     }
     
     @objc func downloadImage(){
-        if let nameImage = self.image {
-            apiWallpapers.getWallpaperByName(category: self.category!.id, name: nameImage){
-                (isSuccess,data,message) in
-                if(isSuccess){
-                    self.anilytics.logEvent(name: "click_download_image",parameters: ["nameImage": nameImage])
-                    if let imageView = UIImage(data: data as! Data) {
-                        UIImageWriteToSavedPhotosAlbum(imageView, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+        var numberOfDownloads = userDefaults.integer(forKey: "number_of_downloads")
+        if self.isPurchase || (numberOfDownloads < (self.freeUsage ?? 0)) {
+            if numberOfDownloads < (self.freeUsage ?? 0) {
+                numberOfDownloads += 1
+                print("===============>\(numberOfDownloads)" )
+                userDefaults.setValue(numberOfDownloads, forKey: "number_of_downloads")
+            }
+            
+            if let nameImage = self.image {
+                apiWallpapers.getWallpaperByName(category: self.category!.id, name: nameImage){
+                    (isSuccess,data,message) in
+                    if(isSuccess){
+                        self.anilytics.logEvent(name: "click_download_image",parameters: ["nameImage": nameImage])
+                        if let imageView = UIImage(data: data as! Data) {
+                            UIImageWriteToSavedPhotosAlbum(imageView, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                        }
+                    }else{
+                        self.activityIndicator.stopAnimating()
+                        self.showErrorMessageAlert(message: message ?? "")
                     }
-                }else{
-                    self.activityIndicator.stopAnimating()
-                    self.showErrorMessageAlert(message: message ?? "")
                 }
             }
+        }else {
+            self.selectViewDS()
         }
+    }
+    
+    func getData(){
+        if let ds = userDefaults.data(forKey: "ds") {
+            do {
+                  let decoder = JSONDecoder()
+                  let dsData = try decoder.decode(DS.self, from: ds)
+                  self.ds = dsData
+                   
+              } catch {
+                  print("error not data")
+              }
+        }
+        self.freeUsage = userDefaults.integer(forKey: "free_usage")
+        
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
@@ -434,6 +482,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func isPremium(value: Bool) {
         if value {
             kingButton.isHidden = true
+            self.isPurchase = true
         }
     }
     

@@ -1,11 +1,10 @@
 //
-//  DSViewController.swift
+//  DS2ViewController.swift
 //  BaseProjectApp
 //
-//  Created by Tin Nguyen on 08/01/2024.
+//  Created by Tin Nguyen on 23/01/2024.
 //  Copyright © 2024 Vulcan Labs. All rights reserved.
 //
-
 
 import Foundation
 import UIKit
@@ -15,7 +14,7 @@ import NVActivityIndicatorView
 import FirebaseAnalytics
 import Toast_Swift
 
-class DSViewController: UIViewController{
+class DS2ViewController: UIViewController{
     private lazy var backgroundView = UIView()
     private lazy var backgroundImageView = UIImageView()
     private lazy var containerView = UIView()
@@ -23,16 +22,11 @@ class DSViewController: UIViewController{
     private lazy var contentView = UIView()
     private lazy var titleHeaderLabel = UILabel()
     private lazy var informationView = UIView()
-    private lazy var itemDownloadInformationView = InformationPremiumView()
-    private lazy var itemCategoriesInformationView = InformationPremiumView()
-    private lazy var itemWallpapersInformationView = InformationPremiumView()
-    private lazy var itemRemoveInformationView = InformationPremiumView()
-    private lazy var buyButton = UIButton()
-    private lazy var textBuyButtonlabel = UILabel()
-    private lazy var iconButton = UIImageView()
+    private lazy var itemDownloadInformationView = InformationPremiumViewDS2()
+    private lazy var itemCategoriesInformationView = InformationPremiumViewDS2()
+    private lazy var itemWallpapersInformationView = InformationPremiumViewDS2()
+    private lazy var itemRemoveInformationView = InformationPremiumViewDS2()
     private lazy var securedView = UIView()
-    private lazy var iconSecuredImage = UIImageView()
-    private lazy var textSecuredlabel = UILabel()
     private lazy var continueButton = ContinueButton()
     private lazy var backButton = UIButton()
     private lazy var listbuttonView = UIButton()
@@ -40,8 +34,21 @@ class DSViewController: UIViewController{
     private lazy var termButton = UIButton()
     private lazy var policeButton = UIButton()
     private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    private lazy var bestSaleView = UIView()
+    private lazy var bestSaleLabel = UILabel()
+    private lazy var bestSaleToggle = UISwitch()
+    private lazy var buyView = UIView()
+    private lazy var contentBuyView = UIView()
+    private lazy var textTopBuyaLabel = UILabel()
+    private lazy var textBottomBuyaLabel = UILabel()
+    private lazy var buyMoneyLabel = UILabel()
+    private lazy var iconBestImage = UIImageView()
+    private lazy var weeklyAccessView = UIView()
+    private lazy var weeklyAccessLabel = UILabel()
+    private lazy var weeklyAccessMoneyLabel = UILabel()
     
     var ds:DS?
+    
     var delegate: Delegate?
     
     override func viewDidLoad() {
@@ -54,7 +61,7 @@ class DSViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
+    
         DispatchQueue.main.asyncAfter(deadline: .now() +  DispatchTimeInterval.seconds(self.ds?.time ?? 0)) {
             self.backButton.isHidden = false
         }
@@ -64,65 +71,84 @@ class DSViewController: UIViewController{
     func setUpViews() {
         view.backgroundColor = ConfigColor.main_bg
         
-        backgroundImageView.image = UIImage(named: "background_DS_1")
+        backgroundImageView.image = UIImage(named: "background_DS_2")
         backgroundImageView.contentMode = .scaleAspectFill
-        backgroundView.layer.addSublayer(UiltFormat.share.setGrandientShowdow(yourWidth: Int(view.frame.width), yourHeight: 200,y: 300))
+        backgroundView.layer.addSublayer(UiltFormat.share.setGrandientShowdow(yourWidth: Int(view.frame.width), yourHeight: 575,y: 100))
         containerView.clipsToBounds = true
         
-        let attributedText = NSMutableAttributedString(string: "Unlock Premium")
+        let attributedText = NSMutableAttributedString(string: "Get FULL ACCESS")
         // Đặt kích thước và độ đậm chữ cho phần đầu của văn bản
-        let font1 = UIFont.systemFont(ofSize: 24, weight: .regular)
+        let font1 = UIFont.systemFont(ofSize: 32, weight: .regular)
         let attributes1: [NSAttributedString.Key: Any] = [
             .font: font1,
             .foregroundColor: UIColor.white
         ]
-        attributedText.addAttributes(attributes1, range: NSRange(location: 0, length: 6))
+        attributedText.addAttributes(attributes1, range: NSRange(location: 0, length: 3))
         // Đặt kích thước và độ đậm chữ cho phần cuối của văn bản
-        let font2 = UIFont.systemFont(ofSize: 28, weight: .bold )
+        let font2 = UIFont.systemFont(ofSize: 32, weight: .bold )
         let attributes2: [NSAttributedString.Key: Any] = [
             .font: font2,
-            .foregroundColor: UIColor.white
+            .foregroundColor: ConfigColor.mainColorDS2
         ]
-        attributedText.addAttributes(attributes2, range: NSRange(location: 6, length: 8))
+        attributedText.addAttributes(attributes2, range: NSRange(location: 4, length: 11))
         // Tạo một UILabel và thiết lập attributedText
         titleHeaderLabel.attributedText = attributedText
-        titleHeaderLabel.textAlignment = .left
+        titleHeaderLabel.textAlignment = .center
         
-        itemDownloadInformationView.icon = UIImage(named: "icon_commit_1")
-        itemDownloadInformationView.infoText = "Download Unlimited Wallpapers"
+        itemDownloadInformationView.icon = UIImage(named: "icon1_DS2")
+        itemDownloadInformationView.infoText = "Unlimited art creation"
         
-        itemCategoriesInformationView.icon = UIImage(named: "icon_commit_2")
-        itemCategoriesInformationView.infoText = "10+ Unique Wallpaper Categories"
+        itemCategoriesInformationView.icon = UIImage(named: "icon2_DS2")
+        itemCategoriesInformationView.infoText = "The best image quality"
         
-        itemWallpapersInformationView.icon = UIImage(named: "icon_commit_3")
-        itemWallpapersInformationView.infoText = "High Quality 4K Wallpapers"
+        itemWallpapersInformationView.icon = UIImage(named: "icon3_DS2")
+        itemWallpapersInformationView.infoText = "Access all exclusive art styles"
         
-        itemRemoveInformationView.icon = UIImage(named: "icon_commit_4")
-        itemRemoveInformationView.infoText = "Remove Ads"
+        itemRemoveInformationView.icon = UIImage(named: "icon4_DS2")
+        itemRemoveInformationView.infoText = "Ad-free experience"
         
-        let gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 60), colors: [ConfigColor.colorBorderButtonStart,ConfigColor.colorBorderButtonEnd ])
-        buyButton.backgroundColor = UIColor(hex: 0x0f213d)
-        buyButton.layer.cornerRadius = 30
-        buyButton.layer.borderColor = UIColor(patternImage: gradient).cgColor
-        buyButton.layer.borderWidth = 2
-        buyButton.clipsToBounds = true
+        bestSaleView.backgroundColor = ConfigColor.backgroundView
+        bestSaleView.layer.cornerRadius = 30
         
-        textBuyButtonlabel.text = "39.99$ / Lifetime Forever"
-        textBuyButtonlabel.textColor = .white
-        textBuyButtonlabel.font = UIFont(name: "OpenSans-Text", size: 16)
-        textBuyButtonlabel.textAlignment = .left
+        bestSaleLabel.text = "Best Offer. Save 70%"
+        bestSaleLabel.textColor = .white
+        bestSaleLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         
-        iconButton.image = UIImage(named: "icon_best_seller")
-        iconButton.contentMode = .scaleAspectFill
+        bestSaleToggle.onTintColor = ConfigColor.mainColorDS2
+        bestSaleToggle.isOn = true
+        bestSaleToggle.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged )
+        var gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 60), colors: [ConfigColor.colorBorderButtonStart,ConfigColor.colorBorderButtonEnd ])
         
-        iconSecuredImage.image = UIImage(named: "icon_secured")
-        iconSecuredImage.contentMode = .scaleAspectFit
+        weeklyAccessView.backgroundColor = ConfigColor.backgroundView
+        weeklyAccessView.layer.cornerRadius = 30
+        weeklyAccessView.layer.borderColor = UIColor(patternImage: gradient).cgColor
         
-        textSecuredlabel.text = "Secured with iTunes. Billed once."
-        textSecuredlabel.textColor = .gray
-        textSecuredlabel.font = UIFont(name: "OpenSans-semiBold", size: 13)
-        textSecuredlabel.font = .systemFont(ofSize: 13, weight: .semibold)
-        textSecuredlabel.textAlignment = .right
+        weeklyAccessLabel.text = "WEEKLY ACCESS"
+        weeklyAccessLabel.textColor = .white
+        weeklyAccessLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        
+        weeklyAccessMoneyLabel.text = "4.99$"
+        weeklyAccessMoneyLabel.textColor = .white
+        weeklyAccessMoneyLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        
+        buyView.layer.cornerRadius = 30
+        buyView.layer.borderColor = UIColor(patternImage: gradient).cgColor
+        buyView.layer.borderWidth = 2
+
+        textTopBuyaLabel.text = "LIFETIME - FOREVER"
+        textTopBuyaLabel.textColor = .white
+        textTopBuyaLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        
+        textBottomBuyaLabel.text = "One-time payment"
+        textBottomBuyaLabel.textColor = .white
+        textBottomBuyaLabel.font = .systemFont(ofSize: 14, weight: .semibold)
+        
+        buyMoneyLabel.text = "4.99$"
+        buyMoneyLabel.textColor = .white
+        buyMoneyLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        
+        iconBestImage.image = UIImage(named: "icon_best_offer")
+        iconBestImage.contentMode = .scaleAspectFit
         
         continueButton.setTitle("Continue", for: .normal)
         continueButton.setTitleColor(.black, for: .normal)
@@ -131,7 +157,7 @@ class DSViewController: UIViewController{
         continueButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         continueButton.titleAlignment = .center
         continueButton.layer.cornerRadius = 15
-        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [UIColor(hex: 0xE8FF8E), UIColor(hex: 0x58E0F5)]))
+        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [ConfigColor.colorBorderButtonStart, ConfigColor.colorBorderButtonEnd]))
         continueButton.layer.masksToBounds = false
         continueButton.addTarget(self, action: #selector(handleClickNextView), for: .touchUpInside)
         
@@ -179,8 +205,11 @@ class DSViewController: UIViewController{
         backgroundView.addSubview(backgroundImageView)
         
         containerView.addSubview(contentView)
-        containerView.addSubview(buyButton)
+        containerView.addSubview(bestSaleView)
+        containerView.addSubview(buyView)
+        containerView.addSubview(weeklyAccessView)
         containerView.addSubview(footerView)
+        containerView.addSubview(iconBestImage)
         
         contentView.addSubview(titleHeaderLabel)
         contentView.addSubview(informationView)
@@ -190,15 +219,22 @@ class DSViewController: UIViewController{
         informationView.addSubview(itemWallpapersInformationView)
         informationView.addSubview(itemRemoveInformationView)
         
-        buyButton.addSubview(textBuyButtonlabel)
-        buyButton.addSubview(iconButton)
+        bestSaleView.addSubview(bestSaleLabel)
+        bestSaleView.addSubview(bestSaleToggle)
+        
+        buyView.addSubview(contentBuyView)
+        buyView.addSubview(buyMoneyLabel)
+        
+        
+        contentBuyView.addSubview(textTopBuyaLabel)
+        contentBuyView.addSubview(textBottomBuyaLabel)
+        
+        weeklyAccessView.addSubview(weeklyAccessLabel)
+        weeklyAccessView.addSubview(weeklyAccessMoneyLabel)
         
         footerView.addSubview(securedView)
         footerView.addSubview(continueButton)
         footerView.addSubview(listbuttonView)
-        
-        securedView.addSubview(iconSecuredImage)
-        securedView.addSubview(textSecuredlabel)
         
         listbuttonView.addSubview(restorePurchaseButton)
         listbuttonView.addSubview(termButton)
@@ -212,7 +248,7 @@ class DSViewController: UIViewController{
         
         backgroundView.snp.makeConstraints{
             $0.top.equalToSuperview()
-            $0.size.equalTo(CGSize(width: view.frame.width , height: 472))
+            $0.size.equalTo(CGSize(width: view.frame.width , height: 575))
         }
         
         activityIndicator.snp.makeConstraints{
@@ -226,19 +262,20 @@ class DSViewController: UIViewController{
         
         containerView.snp.makeConstraints{
             $0.bottom.equalToSuperview()
-            $0.size.equalTo(CGSize(width: view.frame.width , height: 533))
+            $0.size.equalTo(CGSize(width: view.frame.width , height: 750))
         }
         
         contentView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalToSuperview().offset(133)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(containerView.snp.width).offset(-60)
+            $0.width.equalTo(333)
             $0.height.equalTo(206)
         }
         
         titleHeaderLabel.snp.makeConstraints{
             $0.top.equalToSuperview()
-            $0.width.equalTo(contentView.snp.width)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(268)
             $0.height.equalTo(41)
         }
         
@@ -272,23 +309,80 @@ class DSViewController: UIViewController{
             $0.height.equalTo(30)
         }
         
-        buyButton.snp.makeConstraints{
-            $0.top.equalTo(contentView.snp.bottom).offset(30)
+        bestSaleView.snp.makeConstraints{
+            $0.top.equalTo(contentView.snp.bottom).offset(35)
+            $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview().offset(-60)
+            $0.height.equalTo(55)
+        }
+        
+        bestSaleLabel.snp.makeConstraints{
+            $0.left.equalToSuperview().offset(20)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(CGSize(width:200 , height: 19))
+        }
+        
+        bestSaleToggle.snp.makeConstraints{
+            $0.centerY.equalToSuperview()
+            $0.right.equalToSuperview().offset(-20)
+            $0.size.equalTo(CGSize(width: 50, height: 30))
+        }
+        
+        buyView.snp.makeConstraints{
+            $0.top.equalTo(bestSaleView.snp.bottom).offset(15)
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().offset(-60)
             $0.height.equalTo(60)
         }
         
-        textBuyButtonlabel.snp.makeConstraints{
-            $0.center.equalToSuperview()
-            $0.height.equalTo(22)
-            $0.width.equalToSuperview().offset(-50)
+        contentBuyView.snp.makeConstraints{
+            $0.left.equalToSuperview().offset(20)
+            $0.height.equalToSuperview()
+            $0.width.equalTo(200)
         }
         
-        iconButton.snp.makeConstraints{
-            $0.right.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 100, height: 30))
+        iconBestImage.snp.makeConstraints{
+            $0.bottom.equalTo(buyView.snp.top).offset(12)
+            $0.right.equalToSuperview().offset(-50)
+            $0.size.equalTo(CGSize(width: 100, height: 22))
+        }
+        
+        textTopBuyaLabel.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(9.5)
+            $0.trailing.leading.equalToSuperview()
+            $0.height.equalTo(22)
+        }
+        
+        buyMoneyLabel.snp.makeConstraints{
+            $0.centerY.equalToSuperview()
+            $0.right.equalToSuperview().offset(-20)
+            $0.size.equalTo(CGSize(width: 50, height: 22))
+        }
+        
+        textBottomBuyaLabel.snp.makeConstraints{
+            $0.top.equalTo(textTopBuyaLabel.snp.bottom)
+            $0.trailing.leading.equalToSuperview()
+            $0.height.equalTo(22)
+        }
+
+        
+        weeklyAccessView.snp.makeConstraints{
+            $0.top.equalTo(buyView.snp.bottom).offset(15)
+            $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview().offset(-60)
+            $0.height.equalTo(55)
+        }
+        
+        weeklyAccessLabel.snp.makeConstraints{
+            $0.left.equalToSuperview().offset(20)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(CGSize(width:200 , height: 22))
+        }
+        
+        weeklyAccessMoneyLabel.snp.makeConstraints{
+            $0.centerY.equalToSuperview()
+            $0.right.equalToSuperview().offset(-20)
+            $0.size.equalTo(CGSize(width: 50, height: 22))
         }
         
         footerView.snp.makeConstraints{
@@ -302,17 +396,6 @@ class DSViewController: UIViewController{
             $0.width.equalToSuperview()
         }
         
-        iconSecuredImage.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 18, height: 18))
-            $0.trailing.equalTo(textSecuredlabel.snp.leading)
-        }
-        
-        textSecuredlabel.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 215, height: 18))
-            $0.centerX.equalToSuperview()
-        }
         
         continueButton.snp.makeConstraints{
             $0.top.equalTo(securedView.snp.bottom).offset(15)
@@ -362,16 +445,28 @@ class DSViewController: UIViewController{
                   let decoder = JSONDecoder()
                   let dsData = try decoder.decode(DS.self, from: ds)
                   self.ds = dsData
-                   
               } catch {
                   self.view.makeToast("error not data", duration: 3.0, position: .center)
               }
         }
     }
+    @objc func switchValueChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            weeklyAccessView.layer.borderWidth = 0
+            weeklyAccessView.backgroundColor = ConfigColor.backgroundView
+            buyView.layer.borderWidth = 2
+            buyView.backgroundColor = UIColor(hex: 0x0f213d)
+            
+        } else {
+            weeklyAccessView.layer.borderWidth = 2
+            weeklyAccessView.backgroundColor = UIColor(hex: 0x0f213d)
+            buyView.layer.borderWidth = 0
+            buyView.backgroundColor =  ConfigColor.backgroundView
+        }
+    }
     
     @objc func handleClickNextView(){
         activityIndicator.startAnimating()
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.activityIndicator.stopAnimating()
             UserDefaults.standard.set(true, forKey:ConfigKey.isPurchase)

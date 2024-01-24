@@ -1,8 +1,8 @@
 //
-//  OBViewController.swift
+//  OB2ViewController.swift
 //  BaseProjectApp
 //
-//  Created by Tin Nguyen on 09/01/2024.
+//  Created by Tin Nguyen on 23/01/2024.
 //  Copyright © 2024 Vulcan Labs. All rights reserved.
 //
 
@@ -10,9 +10,10 @@ import UIKit
 import SnapKit
 import CoreLocation
 import SwiftUI
+import Toast_Swift
 
-class OBViewController: UIViewController{
-    private lazy var continueButton = ContinueButton()
+class OB2ViewController: UIViewController{
+    private lazy var continueButton = UIButton()
     private lazy var obColectionView = UICollectionView()
     
     private var obNumber = 1
@@ -33,10 +34,8 @@ class OBViewController: UIViewController{
         
         continueButton.setTitle("Continue", for: .normal)
         continueButton.setTitleColor(.black, for: .normal)
-        continueButton.setImage(UIImage(named: "icon_continue"), for: .normal)
         continueButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 20)
         continueButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        continueButton.titleAlignment = .center
         continueButton.layer.cornerRadius = 15
         continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [UIColor(hex: 0xE8FF8E), UIColor(hex: 0x58E0F5)]))
         continueButton.layer.masksToBounds = false
@@ -49,8 +48,9 @@ class OBViewController: UIViewController{
         layout.itemSize = CGSize(width: view.frame.width , height: view.frame.height)
         layout.scrollDirection = .horizontal
         self.obColectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        self.obColectionView.register(OB1CollectionViewCell.self, forCellWithReuseIdentifier: OB1CollectionViewCell.id)
-        self.obColectionView.register(OB2CollectionViewCell.self, forCellWithReuseIdentifier: OB2CollectionViewCell.id)
+        self.obColectionView.register(OB3CollectionViewCell.self, forCellWithReuseIdentifier: OB3CollectionViewCell.id)
+        self.obColectionView.register(OB4CollectionViewCell.self, forCellWithReuseIdentifier: OB4CollectionViewCell.id)
+        self.obColectionView.register(OB5CollectionViewCell.self, forCellWithReuseIdentifier: OB5CollectionViewCell.id)
         self.obColectionView.isScrollEnabled = false
         self.obColectionView.contentMode = .scaleAspectFill
         self.obColectionView.backgroundColor = ConfigColor.main_bg
@@ -86,6 +86,11 @@ class OBViewController: UIViewController{
         
         let index = IndexPath(row: currentIndex, section: 0)
         obColectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        } else if obNumber == 2 {
+            obNumber = 3
+            let index = IndexPath(row: currentIndex, section: 0)
+            self.continueButton.setTitle("GO!", for: .normal)
+            obColectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
         }else{
             guard let dsData = self.ds else { return }
             
@@ -98,6 +103,8 @@ class OBViewController: UIViewController{
                 navigationController?.pushViewController(view, animated: true)
             default: break
             }
+           
+            
         }
     }
     func getData(){
@@ -108,26 +115,31 @@ class OBViewController: UIViewController{
                   self.ds = dsData
                    
               } catch {
-                  print("error not data")
+                  self.view.makeToast("error not data", duration: 3.0, position: .center)
               }
         }
     }
     
 }
-extension OBViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension OB2ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OB1CollectionViewCell.id, for: indexPath) as? OB1CollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OB3CollectionViewCell.id, for: indexPath) as? OB3CollectionViewCell else {
                 return .init()
             }
             return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OB2CollectionViewCell.id, for: indexPath) as? OB2CollectionViewCell else {
+        } else if indexPath.row == 1 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OB4CollectionViewCell.id, for: indexPath) as? OB4CollectionViewCell else {
+                return .init()
+            }
+            return cell
+        }else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OB5CollectionViewCell.id, for: indexPath) as? OB5CollectionViewCell else {
                 return .init()
             }
             return cell
@@ -135,4 +147,5 @@ extension OBViewController: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
 }
+
 

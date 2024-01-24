@@ -21,14 +21,21 @@ struct ImageItem: Codable {
 
 struct CategoryItem: Codable {
     let id: String
-    var nameCategory: String
-    var imageCategory: String
- 
+    var name_category : String
+    var image_category: String
+    
+    enum CodingKeys: String, CodingKey {
+           case id
+           case name_category = "name"
+           case image_category = "image"
+       }
+
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.nameCategory = try container.decode(String.self, forKey: .nameCategory)
-        self.imageCategory = try container.decode(String.self, forKey: .imageCategory)
+        self.name_category = try container.decode(String.self, forKey: .name_category)
+        self.image_category = try container.decode(String.self, forKey: .image_category)
     }
-    
+ 
 }

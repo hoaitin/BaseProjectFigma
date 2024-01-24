@@ -41,7 +41,7 @@ struct _R {
     let developmentRegion = "en"
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 98 images.
+  /// This `_R.image` struct is generated, and contains static references to 105 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -99,6 +99,9 @@ struct _R {
     /// Image `background_DS_1`.
     var background_DS_1: RswiftResources.ImageResource { .init(name: "background_DS_1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `background_DS_2`.
+    var background_DS_2: RswiftResources.ImageResource { .init(name: "background_DS_2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `background_bo1`.
     var background_bo1: RswiftResources.ImageResource { .init(name: "background_bo1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -138,6 +141,18 @@ struct _R {
     /// Image `icon-refresh 1`.
     var iconRefresh1: RswiftResources.ImageResource { .init(name: "icon-refresh 1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `icon1_DS2`.
+    var icon1_DS2: RswiftResources.ImageResource { .init(name: "icon1_DS2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon2_DS2`.
+    var icon2_DS2: RswiftResources.ImageResource { .init(name: "icon2_DS2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon3_DS2`.
+    var icon3_DS2: RswiftResources.ImageResource { .init(name: "icon3_DS2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon4_DS2`.
+    var icon4_DS2: RswiftResources.ImageResource { .init(name: "icon4_DS2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `icon_antonym`.
     var icon_antonym: RswiftResources.ImageResource { .init(name: "icon_antonym", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -146,6 +161,9 @@ struct _R {
 
     /// Image `icon_back`.
     var icon_back: RswiftResources.ImageResource { .init(name: "icon_back", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_best_offer`.
+    var icon_best_offer: RswiftResources.ImageResource { .init(name: "icon_best_offer", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `icon_best_seller`.
     var icon_best_seller: RswiftResources.ImageResource { .init(name: "icon_best_seller", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -284,6 +302,9 @@ struct _R {
 
     /// Image `mecha_robot`.
     var mecha_robot: RswiftResources.ImageResource { .init(name: "mecha_robot", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `onboarding_7_3`.
+    var onboarding_7_3: RswiftResources.ImageResource { .init(name: "onboarding_7_3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `robot1`.
     var robot1: RswiftResources.ImageResource { .init(name: "robot1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }

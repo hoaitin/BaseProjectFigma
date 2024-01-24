@@ -58,7 +58,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(category: CategoryItem){
-        UiltFormat.share.loadImage(from: category.imageCategory) { result in
+        UiltFormat.share.loadImage(from: category.image_category) { result in
             switch result {
             case .success(let image):
                 self.categoryImage.image = image
@@ -66,7 +66,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
                 print("Lỗi khi tải hình ảnh: \(error.localizedDescription)")
             }
         }
-        nameCategoryLabel.text = category.nameCategory
+        nameCategoryLabel.text = category.name_category
      
     }
     

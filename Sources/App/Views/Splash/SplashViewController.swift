@@ -20,9 +20,9 @@ class SplashViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-            sleep(5)
-//            self.nextPageHasLaunchedBefore()
-        self.testOnboarding()
+
+        
+        getData()
     }
    
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class SplashViewController: UIViewController{
         
         setUpViews()
         setUpConstraints()
-        getData()
+      
     }
     
     func setUpViews() {
@@ -50,7 +50,6 @@ class SplashViewController: UIViewController{
     }
     
  
-    
     func setUpConstraints() {
         view.addSubview(backgroundImageView)
         view.addSubview(textLabel)
@@ -77,8 +76,17 @@ class SplashViewController: UIViewController{
         var isLoadData =  userDefaults.bool(forKey: "loadData")
         DispatchQueue.global().async {
             while !isLoadData {
-                    sleep(2)
+                    sleep(5)
                 isLoadData = self.userDefaults.bool(forKey: "loadData")
+            }
+            
+            let onboarding = self.userDefaults.string(forKey: "onboarding")
+    
+            if isLoadData {
+                DispatchQueue.main.sync {
+                    self.nextPageHasLaunchedBefore()
+                }
+
             }
             
         }
@@ -87,8 +95,7 @@ class SplashViewController: UIViewController{
     func nextPageHasLaunchedBefore(){
         let hasLaunchedBefore = UserDefaults.standard.bool(forKey: ConfigKey.hasLaunchedBefore)
         if !hasLaunchedBefore {
-            let viewOB = OBViewController()
-            navigationController?.pushViewController(viewOB, animated: true)
+            self.nextOnboarding()
         } else {
            let viewMain = MainViewController()
            navigationController?.pushViewController(viewMain, animated: true)
@@ -96,21 +103,18 @@ class SplashViewController: UIViewController{
         }
     }
     
-    func testOnboarding(){
+    func nextOnboarding(){
         if let onboarding = userDefaults.string(forKey: "onboarding") {
-            print("======> \(onboarding)")
+           
             switch onboarding {
             case "onboarding_v1":
-                 let view = View1Controller()
+                 let view =  OBViewController()
                 navigationController?.pushViewController(view, animated: true)
             case "onboarding_v2":
-                let view = View2Controller()
+                let view = OB2ViewController()
                navigationController?.pushViewController(view, animated: true)
-            case "onboarding_v3":
-                let view = View3Controller()
-               navigationController?.pushViewController(view, animated: true)
-            default: 
-                let view = View1Controller()
+            default:
+                let view = OBViewController()
                navigationController?.pushViewController(view, animated: true)
             }
             

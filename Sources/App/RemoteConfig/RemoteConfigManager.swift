@@ -44,9 +44,15 @@ class RemoteConfigManager{
             self.userDefault.setValue(value, forKey: "onboarding")
             print("RC 1: \(value)")
             
+            let ds = self.remoteConfig.configValue(forKey: "direct_store_configs").dataValue
+            self.userDefault.set(ds, forKey: "ds")
+            
             let categoriesRC = self.remoteConfig.configValue(forKey: "categories").dataValue
             self.userDefault.set(categoriesRC,forKey: "categories")
             print("RC 2: \(categoriesRC)")
+            
+            let freeUsage = self.remoteConfig.configValue(forKey: "free_usage").numberValue
+            self.userDefault.set(freeUsage,forKey: "free_usage")
             
             self.userDefault.set(true, forKey: "loadData")
             
@@ -54,64 +60,6 @@ class RemoteConfigManager{
             print("RC Get wrong!")
         }
     }
-    
-//    func fetchRemoteConfigValues(key: String, completion: @escaping callback){
-//        let list:[RemoteConfigParameter] = [
-//            RemoteConfigParameter(key: ConfigKey.set_text_view_splash, type: "String"),
-//            RemoteConfigParameter(key: ConfigKey.set_text_view_OB1, type: "String"),
-//            RemoteConfigParameter(key: ConfigKey.set_text_view_OB2, type: "String"),
-//            RemoteConfigParameter(key: ConfigKey.categories, type: "Json")
-//        ]
-//        
-//        DispatchQueue.global().async {
-//            self.remoteConfig.fetch(withExpirationDuration: 0, completionHandler: { status, error in
-//                if status == .success, error == nil{
-//                    self.remoteConfig.activate(completion: {change,error in
-//                        guard error == nil else{
-//                            completion(false,nil,"Error")
-//                            return
-//                        }
-//                        
-//                        for item in list {
-//                            switch item.type {
-//                            case "String":
-//                                let value = self.remoteConfig.configValue(forKey: key).stringValue
-//                                UserDefaults.standard.set(value, forKey: item.key)
-//                                
-//                            case "Json":
-//                                let jsonValue = self.remoteConfig.configValue(forKey: key).jsonValue
-//                                // Tiếp tục xử lý JSON
-//                                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonValue) {
-//                                    do {
-//                                       
-//                                        let decoder = JSONDecoder()
-//                                        let categories = try decoder.decode([CategoryItem].self, from: jsonData)
-//                                        completion(true, categories, "success")
-//                                    } catch {
-//                                        print("Error decoding JSON: \(error)")
-//                                        completion(false, nil, "Error decoding JSON")
-//                                    }
-//                                } else {
-//                                    completion(false, nil, "Error: Unable to get JSON data from Remote Config")
-//                                }
-//                            
-//                                
-//                            default: break
-//                                
-//                            }
-//                        }
-//
-//                        completion(true,value,"success")
-//                        
-//                    })
-//                    
-//                }else{
-//                    print("==== LOAD RC FAILED")
-//                    completion(false,nil,"Error fetching remote config")
-//                }
-//            })
-//        }
-//    }
     
     func fetchRemoteConfigCategories(key: String, completion: @escaping callback) {
         DispatchQueue.global().async {

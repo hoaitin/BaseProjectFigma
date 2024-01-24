@@ -18,4 +18,9 @@ struct ConfigColor{
     public static let colorBorderButtonStart = UIColor(hex: 0xC048FF)
     public static let colorBorderButtonEnd = UIColor(hex: 0x4ABEFE)
     
+    public static let mainColorDS2 = UIColor(hex: 0xE8FF8E)
+    
+    public static let backgroundView = UIColor(hex: 0x0B0F17)
+   
+    
 }
