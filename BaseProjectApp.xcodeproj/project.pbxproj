@@ -55,6 +55,14 @@
 		C3EAE2DD2B5F9D7C00BDE6A9 /* OB3CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2DC2B5F9D7C00BDE6A9 /* OB3CollectionViewCell.swift */; };
 		C3EAE2DF2B5F9DF000BDE6A9 /* OB4CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2DE2B5F9DF000BDE6A9 /* OB4CollectionViewCell.swift */; };
 		C3EAE2E12B5F9E7D00BDE6A9 /* OB5CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2E02B5F9E7D00BDE6A9 /* OB5CollectionViewCell.swift */; };
+		C3EAE2E52B60F06D00BDE6A9 /* SendEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2E42B60F06D00BDE6A9 /* SendEmailViewController.swift */; };
+		C3EAE2E72B60FA1600BDE6A9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2E62B60FA1600BDE6A9 /* Setting.swift */; };
+		C3EAE2EC2B6117CB00BDE6A9 /* Settings2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2EB2B6117CB00BDE6A9 /* Settings2ViewController.swift */; };
+		C3EAE2EE2B611C9F00BDE6A9 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2ED2B611C9F00BDE6A9 /* ItemView.swift */; };
+		C3EAE2F22B61237B00BDE6A9 /* Setting2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2F12B61237B00BDE6A9 /* Setting2TableViewCell.swift */; };
+		C3EAE2F42B61FD7900BDE6A9 /* Setting2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2F32B61FD7900BDE6A9 /* Setting2.swift */; };
+		C3EAE2F82B62054400BDE6A9 /* ListLogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2F72B62054400BDE6A9 /* ListLogoViewController.swift */; };
+		C3EAE2FA2B620B7900BDE6A9 /* LogoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EAE2F92B620B7900BDE6A9 /* LogoCollectionViewCell.swift */; };
 		D85B2D6E2451CA6C00300F57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85B2D6C2451CA6C00300F57 /* LaunchScreen.storyboard */; };
 		D8729C8F2431A2250045F4FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2C22B222A8EE6C003526A6 /* Assets.xcassets */; };
 		D88E8CB825812207009864A9 /* Plist in Resources */ = {isa = PBXBuildFile; fileRef = D88E8CB725812207009864A9 /* Plist */; };
@@ -143,6 +151,14 @@
 		C3EAE2DC2B5F9D7C00BDE6A9 /* OB3CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OB3CollectionViewCell.swift; sourceTree = "<group>"; };
 		C3EAE2DE2B5F9DF000BDE6A9 /* OB4CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OB4CollectionViewCell.swift; sourceTree = "<group>"; };
 		C3EAE2E02B5F9E7D00BDE6A9 /* OB5CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OB5CollectionViewCell.swift; sourceTree = "<group>"; };
+		C3EAE2E42B60F06D00BDE6A9 /* SendEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailViewController.swift; sourceTree = "<group>"; };
+		C3EAE2E62B60FA1600BDE6A9 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		C3EAE2EB2B6117CB00BDE6A9 /* Settings2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings2ViewController.swift; sourceTree = "<group>"; };
+		C3EAE2ED2B611C9F00BDE6A9 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		C3EAE2F12B61237B00BDE6A9 /* Setting2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting2TableViewCell.swift; sourceTree = "<group>"; };
+		C3EAE2F32B61FD7900BDE6A9 /* Setting2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting2.swift; sourceTree = "<group>"; };
+		C3EAE2F72B62054400BDE6A9 /* ListLogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLogoViewController.swift; sourceTree = "<group>"; };
+		C3EAE2F92B620B7900BDE6A9 /* LogoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoCollectionViewCell.swift; sourceTree = "<group>"; };
 		CAA6B170F25CDAD6DF522015 /* Pods-AIEnglishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIEnglishApp.debug.xcconfig"; path = "Target Support Files/Pods-AIEnglishApp/Pods-AIEnglishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D8158C5126106F17005CD0EB /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8158C5226106F17005CD0EB /* RxRelay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxRelay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,6 +354,7 @@
 			children = (
 				C329CE672B4BF892005FBF62 /* SettingViewController.swift */,
 				C32237B52B57CA70001861D1 /* SettingTableViewCell.swift */,
+				C3EAE2E42B60F06D00BDE6A9 /* SendEmailViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -397,6 +414,8 @@
 			children = (
 				C39D0D4F2B54D01E000B43FE /* CategoryItem.swift */,
 				C3EAE2D42B5F62DC00BDE6A9 /* DS.swift */,
+				C3EAE2E62B60FA1600BDE6A9 /* Setting.swift */,
+				C3EAE2F32B61FD7900BDE6A9 /* Setting2.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -438,6 +457,18 @@
 			name = TestView;
 			sourceTree = "<group>";
 		};
+		C3EAE2E82B61174E00BDE6A9 /* Setting2 */ = {
+			isa = PBXGroup;
+			children = (
+				C3EAE2EB2B6117CB00BDE6A9 /* Settings2ViewController.swift */,
+				C3EAE2ED2B611C9F00BDE6A9 /* ItemView.swift */,
+				C3EAE2F12B61237B00BDE6A9 /* Setting2TableViewCell.swift */,
+				C3EAE2F72B62054400BDE6A9 /* ListLogoViewController.swift */,
+				C3EAE2F92B620B7900BDE6A9 /* LogoCollectionViewCell.swift */,
+			);
+			name = Setting2;
+			sourceTree = "<group>";
+		};
 		D7C7DE150C8D1C51F6EEEA7F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +489,7 @@
 		D843E39D249139F800152B47 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3EAE2E82B61174E00BDE6A9 /* Setting2 */,
 				C3EAE2CD2B5E7B3700BDE6A9 /* TestView */,
 				C31987EC2B4EA71E000640BA /* HomeMain */,
 				C31987EB2B4EA708000640BA /* Splash */,
@@ -681,6 +713,8 @@
 			files = (
 				C34ABFE52B47F23800C8D7E5 /* ContinueButton.swift in Sources */,
 				C32237B62B57CA70001861D1 /* SettingTableViewCell.swift in Sources */,
+				C3EAE2E52B60F06D00BDE6A9 /* SendEmailViewController.swift in Sources */,
+				C3EAE2EE2B611C9F00BDE6A9 /* ItemView.swift in Sources */,
 				C3EAE2D52B5F62DC00BDE6A9 /* DS.swift in Sources */,
 				C308B8912B4CF2340084CF1C /* OBViewController.swift in Sources */,
 				C34ABFE32B47DF3600C8D7E5 /* CategoryCollectionViewCell.swift in Sources */,
@@ -694,8 +728,12 @@
 				C355A0E92B5A39E700DCC119 /* ConfigValueDeffault.swift in Sources */,
 				C34ABFDF2B47C0B900C8D7E5 /* GradientLabel.swift in Sources */,
 				C32237B22B57726C001861D1 /* ApiWallpapers.swift in Sources */,
+				C3EAE2EC2B6117CB00BDE6A9 /* Settings2ViewController.swift in Sources */,
+				C3EAE2E72B60FA1600BDE6A9 /* Setting.swift in Sources */,
 				C3570BBF2B55273800942D6A /* UIImageViewExtension.swift in Sources */,
 				C329CE622B4BA8D2005FBF62 /* InformationPremiumView.swift in Sources */,
+				C3EAE2F42B61FD7900BDE6A9 /* Setting2.swift in Sources */,
+				C3EAE2F82B62054400BDE6A9 /* ListLogoViewController.swift in Sources */,
 				C355A0EB2B5A3E4B00DCC119 /* Delegate.swift in Sources */,
 				C34ABFDB2B47B63600C8D7E5 /* SplashViewController.swift in Sources */,
 				C3EAE2D72B5F6ECF00BDE6A9 /* DS2ViewController.swift in Sources */,
@@ -714,7 +752,9 @@
 				C39D0D502B54D01E000B43FE /* CategoryItem.swift in Sources */,
 				C329CE602B4B9532005FBF62 /* DSViewController.swift in Sources */,
 				C39D0D522B54D127000B43FE /* FileJson.swift in Sources */,
+				C3EAE2F22B61237B00BDE6A9 /* Setting2TableViewCell.swift in Sources */,
 				C3EAE2DD2B5F9D7C00BDE6A9 /* OB3CollectionViewCell.swift in Sources */,
+				C3EAE2FA2B620B7900BDE6A9 /* LogoCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

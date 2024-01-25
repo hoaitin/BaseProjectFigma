@@ -131,7 +131,7 @@ class DSViewController: UIViewController{
         continueButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         continueButton.titleAlignment = .center
         continueButton.layer.cornerRadius = 15
-        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [UIColor(hex: 0xE8FF8E), UIColor(hex: 0x58E0F5)]))
+        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [UIColor(hex: 0xE8FF8E), UIColor(hex: 0x58E0F5)],radius: 15))
         continueButton.layer.masksToBounds = false
         continueButton.addTarget(self, action: #selector(handleClickNextView), for: .touchUpInside)
         

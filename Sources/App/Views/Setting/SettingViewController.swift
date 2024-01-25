@@ -10,13 +10,22 @@ import Foundation
 import UIKit
 import SnapKit
 import CoreLocation
+import SafariServices
+import MessageUI
 
-class SettingViewController: UIViewController{
+class SettingViewController: UIViewController , MFMailComposeViewControllerDelegate{
     private lazy var titleLabel = UILabel()
     private lazy var contentTableView = UITableView()
     private lazy var backButon = UIButton()
     
-    private let settings:[String] = ["Share Anime Wallpaper","Term Of Use","Privacy & Security","Contact","Email Us","About Us"]
+    private let settings:[Setting] = [
+      Setting(name: "Share Anime Wallpaper", link: ""),
+      Setting(name: "Term Of Use", link: "https://sites.google.com/tinyleo.com/terms-of-use"),
+      Setting(name: "Privacy & Security", link: "https://sites.google.com/tinyleo.com/privacy-policy"),
+      Setting(name: "Contact", link: "https://sites.google.com/tinyleo.com/contact-us"),
+      Setting(name: "Email Us", link: ""),
+      Setting(name: "About Us", link: "https://sites.google.com/tinyleo.com/about-us")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,13 +74,16 @@ class SettingViewController: UIViewController{
              $0.height.equalTo(360)
         }
         
-
-        
     }
     
     @objc func nextBackView(){
         navigationController?.popViewController(animated: true)
     }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+           // Xử lý kết quả của việc gửi email
+           controller.dismiss(animated: true, completion: nil)
+       }
 
 }
 
@@ -96,7 +108,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
         }
         let setting = settings[indexPath.row]
       
-        cell.setData(text: setting,index: indexPath.row)
+        cell.setData(text: setting.name,index: indexPath.row)
         
         return cell
         
@@ -104,6 +116,46 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
       return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let setting = settings[indexPath.row]
+        
+        if setting.link != "" {
+            if let url = URL(string: setting.link) {
+                let safariViewController = SFSafariViewController(url: url)
+                present(safariViewController, animated: true, completion: nil)
+            }
+        }else {
+            if indexPath.row == 0 {
+                let textToShare = "https://apps.apple.com/vn/app/id6471563037"
+                let itemsToShare = [textToShare]
+
+                       // Tạo UIActivityViewController
+                let activityViewController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
+                present(activityViewController, animated: true, completion: nil)
+            }else {
+                if MFMailComposeViewController.canSendMail() {
+                           // Tạo MFMailComposeViewController
+                           let mailComposeViewController = MFMailComposeViewController()
+                           mailComposeViewController.mailComposeDelegate = self
+                           mailComposeViewController.setToRecipients(["recipient@example.com"]) // Địa chỉ email người nhận
+
+                           // Đặt chủ đề và nội dung email
+                           mailComposeViewController.setSubject("Feedback Anime Diffusion")
+                           mailComposeViewController.setMessageBody("Nội dung email", isHTML: false)
+
+                           // Hiển thị MFMailComposeViewController
+                           present(mailComposeViewController, animated: true, completion: nil)
+                       } else {
+                           // Thiết bị không hỗ trợ gửi email
+                           // Xử lý trường hợp này theo cách bạn muốn
+                           print("Thiết bị không hỗ trợ gửi email.")
+                       }
+            }
+            
+        }
+       
     }
     
  

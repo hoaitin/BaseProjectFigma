@@ -21,6 +21,9 @@ struct ConfigColor{
     public static let mainColorDS2 = UIColor(hex: 0xE8FF8E)
     
     public static let backgroundView = UIColor(hex: 0x0B0F17)
+    
+    public static let main_setting2 = UIColor(hex:  0x969696)
+   
    
     
 }

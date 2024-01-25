@@ -67,7 +67,6 @@ class MainViewController: UIViewController,Delegate{
     }
 
     func setUpViews() {
-        backgroundImageView.image = UIImage(named: "background-main")
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
         
@@ -75,7 +74,7 @@ class MainViewController: UIViewController,Delegate{
         textLabel.textColor = .white
         textLabel.textAlignment = .center
         textLabel.font = UIFont(name: "OpenSans-Text", size: 14)
-        textLabel.isHidden = true
+       
         
         bannerTimeImage.image = UIImage(named: "banner_time")
         bannerTimeImage.contentMode = .scaleAspectFill
@@ -228,7 +227,7 @@ class MainViewController: UIViewController,Delegate{
         
         UIView.animate(withDuration: TimeInterval(1.5)) {
             self.view.layoutIfNeeded()
-            self.textLabel.isHidden = self.isShowCate
+      
         }
        
     }
@@ -271,7 +270,7 @@ class MainViewController: UIViewController,Delegate{
     }
     
     @objc func nextSettting(){
-        let view = SettingViewController()
+        let view = Settings2ViewController()
         navigationController?.pushViewController(view, animated: true)
     }
   

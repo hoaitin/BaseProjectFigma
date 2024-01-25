@@ -53,6 +53,7 @@ class RemoteConfigManager{
             
             let freeUsage = self.remoteConfig.configValue(forKey: "free_usage").numberValue
             self.userDefault.set(freeUsage,forKey: "free_usage")
+            print("RC 3: \(freeUsage) - \(self.userDefault.integer(forKey: "free_usage"))")
             
             self.userDefault.set(true, forKey: "loadData")
             

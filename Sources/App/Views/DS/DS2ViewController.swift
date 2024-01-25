@@ -120,7 +120,7 @@ class DS2ViewController: UIViewController{
         var gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 60), colors: [ConfigColor.colorBorderButtonStart,ConfigColor.colorBorderButtonEnd ])
         
         weeklyAccessView.backgroundColor = ConfigColor.backgroundView
-        weeklyAccessView.layer.cornerRadius = 30
+        weeklyAccessView.layer.cornerRadius = 25
         weeklyAccessView.layer.borderColor = UIColor(patternImage: gradient).cgColor
         
         weeklyAccessLabel.text = "WEEKLY ACCESS"
@@ -132,6 +132,7 @@ class DS2ViewController: UIViewController{
         weeklyAccessMoneyLabel.font = .systemFont(ofSize: 16, weight: .semibold)
         
         buyView.layer.cornerRadius = 30
+        buyView.backgroundColor = ConfigColor.backgroundView
         buyView.layer.borderColor = UIColor(patternImage: gradient).cgColor
         buyView.layer.borderWidth = 2
 
@@ -157,7 +158,7 @@ class DS2ViewController: UIViewController{
         continueButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         continueButton.titleAlignment = .center
         continueButton.layer.cornerRadius = 15
-        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [ConfigColor.colorBorderButtonStart, ConfigColor.colorBorderButtonEnd]))
+        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [ConfigColor.colorBorderButtonStart, ConfigColor.colorBorderButtonEnd],radius: 15))
         continueButton.layer.masksToBounds = false
         continueButton.addTarget(self, action: #selector(handleClickNextView), for: .touchUpInside)
         
@@ -453,15 +454,15 @@ class DS2ViewController: UIViewController{
     @objc func switchValueChanged(_ sender: UISwitch) {
         if sender.isOn {
             weeklyAccessView.layer.borderWidth = 0
-            weeklyAccessView.backgroundColor = ConfigColor.backgroundView
+//            weeklyAccessView.backgroundColor = ConfigColor.backgroundView
             buyView.layer.borderWidth = 2
-            buyView.backgroundColor = UIColor(hex: 0x0f213d)
+//            buyView.backgroundColor = UIColor(hex: 0x0f213d)
             
         } else {
             weeklyAccessView.layer.borderWidth = 2
-            weeklyAccessView.backgroundColor = UIColor(hex: 0x0f213d)
+//            weeklyAccessView.backgroundColor = UIColor(hex: 0x0f213d)
             buyView.layer.borderWidth = 0
-            buyView.backgroundColor =  ConfigColor.backgroundView
+//            buyView.backgroundColor =  ConfigColor.backgroundView
         }
     }
     

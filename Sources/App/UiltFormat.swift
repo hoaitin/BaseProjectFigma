@@ -12,7 +12,7 @@ import UIKit
 class UiltFormat{
     public static var share:UiltFormat = UiltFormat()
     
-    public func setGrandientLayer(yourWidth: Int ,yourHeight : Int, colors: [UIColor])-> CAGradientLayer {
+    public func setGrandientLayer(yourWidth: Int ,yourHeight : Int, colors: [UIColor], radius: Int)-> CAGradientLayer {
         // Tạo một gradient layer
         let gradientLayer = CAGradientLayer()        // Đặt màu cho gradient
         gradientLayer.colors = colors.map(\.cgColor)
@@ -20,7 +20,7 @@ class UiltFormat{
         // Đặt điểm bắt đầu và kết thúc của gradient
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        gradientLayer.cornerRadius = 15
+        gradientLayer.cornerRadius = CGFloat(radius)
         gradientLayer.zPosition = -1
         
         // Đặt frame cho gradient layer (đối với ví dụ này, chúng ta sẽ đặt full width và height của view)
@@ -31,11 +31,12 @@ class UiltFormat{
     public func setGrandientShowdow(yourWidth: Int ,yourHeight : Int, y : Int)-> CAGradientLayer {
         // Tạo một gradient layer
         let gradientLayer = CAGradientLayer()        // Đặt màu cho gradient
-        gradientLayer.colors = [UIColor.black.withAlphaComponent(1).cgColor, UIColor.black.withAlphaComponent(0.02).cgColor]
+        gradientLayer.colors = [UIColor.black.withAlphaComponent(1).cgColor,UIColor.black.withAlphaComponent(0.9).cgColor, UIColor.black.withAlphaComponent(0).cgColor]
         
         // Đặt điểm bắt đầu và kết thúc của gradient
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.locations = [0, 0.3, 1]
+        gradientLayer.startPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0)
         //        gradientLayer.cornerRadius = 15
         //        gradientLayer.zPosition = -1
         
