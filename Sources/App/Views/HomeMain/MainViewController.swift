@@ -162,7 +162,7 @@ class MainViewController: UIViewController,Delegate{
         }
         
         headerView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(47)
+            $0.top.equalToSuperview().offset(Configs.isHasNortch ? 47 : 20)
             $0.size.equalTo(CGSize(width: view.frame.width, height: 40))
         }
         

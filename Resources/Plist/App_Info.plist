@@ -23,28 +23,27 @@
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundleAlternateIcons</key>
-		<string></string>
+		<dict>
+			<key>AppIcon 10</key>
+			<dict>
+				<key>CFBundleIconName</key>
+				<string>AppIcon 10</string>
+			</dict>
+			<key>AppIcon 11</key>
+			<dict>
+				<key>CFBundleIconName</key>
+				<string>AppIcon 11</string>
+			</dict>
+			<key>AppIcon 12</key>
+			<dict>
+				<key>CFBundleIconName</key>
+				<string>AppIcon 12</string>
+			</dict>
+		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>app_icon_main1</string>
-			</array>
 			<key>CFBundleIconName</key>
-			<string></string>
-			<key>UIPrerenderedIcon</key>
-			<true/>
-		</dict>
-		<key>UINewsstandIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>app_icon_main1</string>
-			</array>
-			<key>UINewsstandBindingEdge</key>
-			<string>UINewsstandBindingEdgeLeft</string>
-			<key>UINewsstandBindingType</key>
-			<string>UINewsstandBindingTypeNewspaper</string>
+			<string>AppIcon 1</string>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -136,9 +135,9 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>A message explaining why you need the user&apos;s location when the app is in use.</string>
+	<string>A message explaining why you need the user's location when the app is in use.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>A message explaining why you need the user&apos;s location when the app is in use.</string>
+	<string>A message explaining why you need the user's location when the app is in use.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need to access to your microphone to record audio and convert it into text input.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -357,6 +356,7 @@
 		<string>SF-Pro-Text-Heavy.ttf</string>
 		<string>OpenSans-Text.ttf</string>
 		<string>OpenSans-SemiBold.ttf</string>
+		<string>OpenSans-ExtraBold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

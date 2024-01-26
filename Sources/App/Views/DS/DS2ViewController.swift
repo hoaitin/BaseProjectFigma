@@ -13,6 +13,7 @@ import CoreLocation
 import NVActivityIndicatorView
 import FirebaseAnalytics
 import Toast_Swift
+import SafariServices
 
 class DS2ViewController: UIViewController{
     private lazy var backgroundView = UIView()
@@ -29,23 +30,14 @@ class DS2ViewController: UIViewController{
     private lazy var securedView = UIView()
     private lazy var continueButton = ContinueButton()
     private lazy var backButton = UIButton()
-    private lazy var listbuttonView = UIButton()
-    private lazy var restorePurchaseButton = UIButton()
-    private lazy var termButton = UIButton()
-    private lazy var policeButton = UIButton()
+    private lazy var listbuttonView = FooterView()
     private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     private lazy var bestSaleView = UIView()
     private lazy var bestSaleLabel = UILabel()
     private lazy var bestSaleToggle = UISwitch()
-    private lazy var buyView = UIView()
-    private lazy var contentBuyView = UIView()
-    private lazy var textTopBuyaLabel = UILabel()
-    private lazy var textBottomBuyaLabel = UILabel()
-    private lazy var buyMoneyLabel = UILabel()
+    private lazy var buyView = OfferView()
     private lazy var iconBestImage = UIImageView()
-    private lazy var weeklyAccessView = UIView()
-    private lazy var weeklyAccessLabel = UILabel()
-    private lazy var weeklyAccessMoneyLabel = UILabel()
+    private lazy var weeklyAccessView = OfferView()
     
     var ds:DS?
     
@@ -117,36 +109,19 @@ class DS2ViewController: UIViewController{
         bestSaleToggle.onTintColor = ConfigColor.mainColorDS2
         bestSaleToggle.isOn = true
         bestSaleToggle.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged )
-        var gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: view.frame.width - 60, height: 60), colors: [ConfigColor.colorBorderButtonStart,ConfigColor.colorBorderButtonEnd ])
+        var gradient = UiltFormat.share.gradientImage(bounds: CGRect(x: 0, y: 0, width: view.frame.width - 58, height: 55), colors: [ConfigColor.colorBorderButtonStart,ConfigColor.colorBorderButtonEnd ])
         
         weeklyAccessView.backgroundColor = ConfigColor.backgroundView
-        weeklyAccessView.layer.cornerRadius = 25
+        weeklyAccessView.layer.cornerRadius = 27.5
+        weeklyAccessView.clipsToBounds = true
         weeklyAccessView.layer.borderColor = UIColor(patternImage: gradient).cgColor
-        
-        weeklyAccessLabel.text = "WEEKLY ACCESS"
-        weeklyAccessLabel.textColor = .white
-        weeklyAccessLabel.font = .systemFont(ofSize: 16, weight: .bold)
-        
-        weeklyAccessMoneyLabel.text = "4.99$"
-        weeklyAccessMoneyLabel.textColor = .white
-        weeklyAccessMoneyLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        weeklyAccessView.setData(text: "WEEKLY ACCESS", description: "", buyMoney: "4.99$", isBest: false)
         
         buyView.layer.cornerRadius = 30
         buyView.backgroundColor = ConfigColor.backgroundView
         buyView.layer.borderColor = UIColor(patternImage: gradient).cgColor
         buyView.layer.borderWidth = 2
-
-        textTopBuyaLabel.text = "LIFETIME - FOREVER"
-        textTopBuyaLabel.textColor = .white
-        textTopBuyaLabel.font = .systemFont(ofSize: 16, weight: .bold)
-        
-        textBottomBuyaLabel.text = "One-time payment"
-        textBottomBuyaLabel.textColor = .white
-        textBottomBuyaLabel.font = .systemFont(ofSize: 14, weight: .semibold)
-        
-        buyMoneyLabel.text = "4.99$"
-        buyMoneyLabel.textColor = .white
-        buyMoneyLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        buyView.setData(text: "LIFETIME - FOREVER", description: "One-time payment", buyMoney: "4.99$", isBest: true)
         
         iconBestImage.image = UIImage(named: "icon_best_offer")
         iconBestImage.contentMode = .scaleAspectFit
@@ -158,36 +133,12 @@ class DS2ViewController: UIViewController{
         continueButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         continueButton.titleAlignment = .center
         continueButton.layer.cornerRadius = 15
-        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: 350, yourHeight: 60,colors: [ConfigColor.colorBorderButtonStart, ConfigColor.colorBorderButtonEnd],radius: 15))
+        continueButton.layer.addSublayer(UiltFormat.share.setGrandientLayer(yourWidth: Configs.isHasNortch ? 350 : 300, yourHeight: 60,colors: [ConfigColor.colorBorderButtonStart, ConfigColor.colorBorderButtonEnd],radius: 15))
         continueButton.layer.masksToBounds = false
         continueButton.addTarget(self, action: #selector(handleClickNextView), for: .touchUpInside)
         
-        //        titleFooterLabel.text = "Restore Purchase | Terms | Policy"
-        restorePurchaseButton.setTitle("Restore Purchase", for: .normal)
-        restorePurchaseButton.setTitleColor( UIColor(hex: 0x969696), for: .normal)
-        restorePurchaseButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
-        restorePurchaseButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
-        
-        termButton.setTitle("Terms", for: .normal)
-        termButton.setTitleColor( UIColor(hex: 0x717585), for: .normal)
-        termButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
-        termButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
-        // Add border to the left
-        let leftBorder = CALayer()
-        leftBorder.frame = CGRect(x: 0, y: 0, width: 1, height: 18)
-        leftBorder.backgroundColor = UIColor.gray.cgColor
-        termButton.layer.addSublayer(leftBorder)
-        
-        // Add border to the right
-        let rightBorder = CALayer()
-        rightBorder.frame = CGRect(x: 48 - 1, y: 0, width: 1, height: 18)
-        rightBorder.backgroundColor = UIColor.gray.cgColor
-        termButton.layer.addSublayer(rightBorder)
-        
-        policeButton.setTitle("Police", for: .normal)
-        policeButton.setTitleColor(UIColor(hex: 0x717585), for: .normal)
-        policeButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
-        policeButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
+        listbuttonView.termButton.addTarget(self, action: #selector(nextTerm), for: .touchUpInside)
+        listbuttonView.policeButton.addTarget(self, action: #selector(nextPolice), for: .touchUpInside)
         
         backButton.setImage(UIImage(named:"icon_close"), for: .normal)
         backButton.addTarget(self, action: #selector(backView), for: .touchUpInside)
@@ -223,26 +174,12 @@ class DS2ViewController: UIViewController{
         bestSaleView.addSubview(bestSaleLabel)
         bestSaleView.addSubview(bestSaleToggle)
         
-        buyView.addSubview(contentBuyView)
-        buyView.addSubview(buyMoneyLabel)
-        
-        
-        contentBuyView.addSubview(textTopBuyaLabel)
-        contentBuyView.addSubview(textBottomBuyaLabel)
-        
-        weeklyAccessView.addSubview(weeklyAccessLabel)
-        weeklyAccessView.addSubview(weeklyAccessMoneyLabel)
-        
         footerView.addSubview(securedView)
         footerView.addSubview(continueButton)
         footerView.addSubview(listbuttonView)
         
-        listbuttonView.addSubview(restorePurchaseButton)
-        listbuttonView.addSubview(termButton)
-        listbuttonView.addSubview(policeButton)
-        
         backButton.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(47)
+            $0.top.equalToSuperview().offset(Configs.isHasNortch ? 47 : 20)
             $0.right.equalToSuperview().offset(-30)
             $0.size.equalTo(CGSize(width: 30, height: 30))
         }
@@ -336,54 +273,16 @@ class DS2ViewController: UIViewController{
             $0.height.equalTo(60)
         }
         
-        contentBuyView.snp.makeConstraints{
-            $0.left.equalToSuperview().offset(20)
-            $0.height.equalToSuperview()
-            $0.width.equalTo(200)
-        }
-        
         iconBestImage.snp.makeConstraints{
             $0.bottom.equalTo(buyView.snp.top).offset(12)
             $0.right.equalToSuperview().offset(-50)
             $0.size.equalTo(CGSize(width: 100, height: 22))
         }
-        
-        textTopBuyaLabel.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(9.5)
-            $0.trailing.leading.equalToSuperview()
-            $0.height.equalTo(22)
-        }
-        
-        buyMoneyLabel.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.right.equalToSuperview().offset(-20)
-            $0.size.equalTo(CGSize(width: 50, height: 22))
-        }
-        
-        textBottomBuyaLabel.snp.makeConstraints{
-            $0.top.equalTo(textTopBuyaLabel.snp.bottom)
-            $0.trailing.leading.equalToSuperview()
-            $0.height.equalTo(22)
-        }
 
-        
         weeklyAccessView.snp.makeConstraints{
             $0.top.equalTo(buyView.snp.bottom).offset(15)
-            $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().offset(-60)
+            $0.leading.trailing.equalToSuperview().inset(30)
             $0.height.equalTo(55)
-        }
-        
-        weeklyAccessLabel.snp.makeConstraints{
-            $0.left.equalToSuperview().offset(20)
-            $0.centerY.equalToSuperview()
-            $0.size.equalTo(CGSize(width:200 , height: 22))
-        }
-        
-        weeklyAccessMoneyLabel.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.right.equalToSuperview().offset(-20)
-            $0.size.equalTo(CGSize(width: 50, height: 22))
         }
         
         footerView.snp.makeConstraints{
@@ -401,7 +300,7 @@ class DS2ViewController: UIViewController{
         continueButton.snp.makeConstraints{
             $0.top.equalTo(securedView.snp.bottom).offset(15)
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 350, height: 60))
+            $0.size.equalTo(CGSize(width: Configs.isHasNortch ? 350 : 300  , height: 60))
         }
         
         listbuttonView.snp.makeConstraints{
@@ -409,22 +308,6 @@ class DS2ViewController: UIViewController{
             $0.centerX.equalToSuperview()
             $0.size.equalTo(CGSize(width: 230, height: 18))
         }
-        
-        restorePurchaseButton.snp.makeConstraints{
-            $0.leading.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 120, height: 18))
-        }
-        
-        termButton.snp.makeConstraints{
-            $0.leading.equalTo(restorePurchaseButton.snp.trailing)
-            $0.size.equalTo(CGSize(width: 48, height: 18))
-        }
-        
-        policeButton.snp.makeConstraints{
-            $0.leading.equalTo(termButton.snp.trailing)
-            $0.size.equalTo(CGSize(width: 48, height: 18))
-        }
-        
         
     }
     
@@ -483,6 +366,20 @@ class DS2ViewController: UIViewController{
             }
         }
     
+    }
+    @objc func nextTerm(){
+        nextWebByLink(link: "https://sites.google.com/tinyleo.com/terms-of-use")
+    }
+    
+    @objc func nextPolice(){
+        nextWebByLink(link: "https://sites.google.com/tinyleo.com/privacy-policy")
+    }
+    
+    func nextWebByLink(link: String){
+        if let url = URL(string: link) {
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+        }
     }
     
 }

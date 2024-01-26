@@ -59,7 +59,6 @@ class PostService{
                 var images = [ImageItem]()
                 for data in dataSnapshot {
                     if let imageData = data.value as? [String: Any]{
-                      
                         var image = ImageItem(id: imageData["id"] as? Int ?? 0,
                                               category_id: imageData["category_id"] as? Int ?? 0,
                                               linkImage: imageData["linkImage"] as? String ?? "")

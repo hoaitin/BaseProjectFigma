@@ -14,6 +14,7 @@ import CoreLocation
 import NVActivityIndicatorView
 import FirebaseAnalytics
 import Toast_Swift
+import SafariServices
 
 class DSViewController: UIViewController{
     private lazy var backgroundView = UIView()
@@ -35,10 +36,8 @@ class DSViewController: UIViewController{
     private lazy var textSecuredlabel = UILabel()
     private lazy var continueButton = ContinueButton()
     private lazy var backButton = UIButton()
-    private lazy var listbuttonView = UIButton()
-    private lazy var restorePurchaseButton = UIButton()
-    private lazy var termButton = UIButton()
-    private lazy var policeButton = UIButton()
+    private lazy var listbuttonView = FooterView()
+
     private lazy var activityIndicator = NVActivityIndicatorView( frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     
     var ds:DS?
@@ -136,31 +135,8 @@ class DSViewController: UIViewController{
         continueButton.addTarget(self, action: #selector(handleClickNextView), for: .touchUpInside)
         
         //        titleFooterLabel.text = "Restore Purchase | Terms | Policy"
-        restorePurchaseButton.setTitle("Restore Purchase", for: .normal)
-        restorePurchaseButton.setTitleColor( UIColor(hex: 0x969696), for: .normal)
-        restorePurchaseButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
-        restorePurchaseButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
-        
-        termButton.setTitle("Terms", for: .normal)
-        termButton.setTitleColor( UIColor(hex: 0x717585), for: .normal)
-        termButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
-        termButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
-        // Add border to the left
-        let leftBorder = CALayer()
-        leftBorder.frame = CGRect(x: 0, y: 0, width: 1, height: 18)
-        leftBorder.backgroundColor = UIColor.gray.cgColor
-        termButton.layer.addSublayer(leftBorder)
-        
-        // Add border to the right
-        let rightBorder = CALayer()
-        rightBorder.frame = CGRect(x: 48 - 1, y: 0, width: 1, height: 18)
-        rightBorder.backgroundColor = UIColor.gray.cgColor
-        termButton.layer.addSublayer(rightBorder)
-        
-        policeButton.setTitle("Police", for: .normal)
-        policeButton.setTitleColor(UIColor(hex: 0x717585), for: .normal)
-        policeButton.titleLabel?.font = UIFont(name: "OpenSans-Text", size: 13)
-        policeButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .regular)
+        listbuttonView.termButton.addTarget(self, action: #selector(nextTerm), for: .touchUpInside)
+        listbuttonView.policeButton.addTarget(self, action: #selector(nextPolice), for: .touchUpInside)
         
         backButton.setImage(UIImage(named:"icon_close"), for: .normal)
         backButton.addTarget(self, action: #selector(backView), for: .touchUpInside)
@@ -200,9 +176,6 @@ class DSViewController: UIViewController{
         securedView.addSubview(iconSecuredImage)
         securedView.addSubview(textSecuredlabel)
         
-        listbuttonView.addSubview(restorePurchaseButton)
-        listbuttonView.addSubview(termButton)
-        listbuttonView.addSubview(policeButton)
         
         backButton.snp.makeConstraints{
             $0.top.equalToSuperview().offset(47)
@@ -326,21 +299,6 @@ class DSViewController: UIViewController{
             $0.size.equalTo(CGSize(width: 230, height: 18))
         }
         
-        restorePurchaseButton.snp.makeConstraints{
-            $0.leading.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 120, height: 18))
-        }
-        
-        termButton.snp.makeConstraints{
-            $0.leading.equalTo(restorePurchaseButton.snp.trailing)
-            $0.size.equalTo(CGSize(width: 48, height: 18))
-        }
-        
-        policeButton.snp.makeConstraints{
-            $0.leading.equalTo(termButton.snp.trailing)
-            $0.size.equalTo(CGSize(width: 48, height: 18))
-        }
-        
         
     }
     
@@ -354,6 +312,21 @@ class DSViewController: UIViewController{
             navigationController?.pushViewController(view, animated: true)
         }
         
+    }
+    
+    @objc func nextTerm(){
+        nextWebByLink(link: "https://sites.google.com/tinyleo.com/terms-of-use")
+    }
+    
+    @objc func nextPolice(){
+        nextWebByLink(link: "https://sites.google.com/tinyleo.com/privacy-policy")
+    }
+    
+    func nextWebByLink(link: String){
+        if let url = URL(string: link) {
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+        }
     }
     
     func getData(){

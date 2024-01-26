@@ -14,8 +14,7 @@ import SafariServices
 import MessageUI
 
 class Settings2ViewController: UIViewController {
-    private lazy var backButton = UIButton()
-    private lazy var titleHeaderLabel = UILabel()
+    private lazy var navHeaderView = NavHeader()
     private lazy var textAppLabel = UILabel()
     private lazy var contentAppView = UIView()
     private lazy var itemAppView = ItemView()
@@ -42,14 +41,8 @@ class Settings2ViewController: UIViewController {
     func setUpViews() {
         view.backgroundColor = ConfigColor.main_bg
         
-        backButton.setImage(UIImage(named: "icon_back_settings"), for: .normal)
-        backButton.contentMode = .scaleAspectFill
-        backButton.addTarget(self, action: #selector(nextBackView), for: .touchUpInside)
-        
-        titleHeaderLabel.text = "Settings"
-        titleHeaderLabel.textColor = .white
-        titleHeaderLabel.font = .systemFont(ofSize: 20, weight: .bold)
-        titleHeaderLabel.textAlignment = .center
+        navHeaderView.setData(icon: "icon_back_settings", text: "Settings")
+        navHeaderView.backButton.addTarget(self, action: #selector(nextBackView), for: .touchUpInside)
         
         textAppLabel.textColor = ConfigColor.main_setting2
         textAppLabel.text = "APP"
@@ -72,8 +65,7 @@ class Settings2ViewController: UIViewController {
     }
     
     func setUpConstraints() {
-        view.addSubview(backButton)
-        view.addSubview(titleHeaderLabel)
+        view.addSubview(navHeaderView)
         view.addSubview(textAppLabel)
         view.addSubview(contentAppView)
         view.addSubview(textAboutLabel)
@@ -81,20 +73,15 @@ class Settings2ViewController: UIViewController {
         
         contentAppView.addSubview(itemAppView)
         
-        backButton.snp.makeConstraints{
+        navHeaderView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(47)
-            $0.left.equalToSuperview().offset(10)
-            $0.size.equalTo(CGSize(width: 40, height: 40))
-        }
-        
-        titleHeaderLabel.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(47)
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(CGSize(width: 200, height: 40))
+            $0.trailing.leading.equalToSuperview()
+            $0.height.equalTo(40)
+           
         }
         
         textAppLabel.snp.makeConstraints{
-            $0.top.equalTo(backButton.snp.bottom).offset(20)
+            $0.top.equalTo(navHeaderView.snp.bottom).offset(20)
             $0.left.equalToSuperview().offset(10)
             $0.height.equalTo(19)
         }

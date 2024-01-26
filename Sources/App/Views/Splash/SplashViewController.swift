@@ -107,10 +107,10 @@ class SplashViewController: UIViewController{
         if let onboarding = userDefaults.string(forKey: "onboarding") {
            
             switch onboarding {
-            case "onboarding_v1":
+            case Onboarding.onboarding_v1.rawValue:
                  let view =  OBViewController()
                 navigationController?.pushViewController(view, animated: true)
-            case "onboarding_v2":
+            case  Onboarding.onboarding_v2.rawValue:
                 let view = OB2ViewController()
                navigationController?.pushViewController(view, animated: true)
             default:

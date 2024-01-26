@@ -41,7 +41,7 @@ struct _R {
     let developmentRegion = "en"
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 105 images.
+  /// This `_R.image` struct is generated, and contains static references to 117 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -50,6 +50,9 @@ struct _R {
 
     /// Image `LaunchImage`.
     var launchImage: RswiftResources.ImageResource { .init(name: "LaunchImage", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `Symbol`.
+    var symbol: RswiftResources.ImageResource { .init(name: "Symbol", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `Vector`.
     var vector: RswiftResources.ImageResource { .init(name: "Vector", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -68,9 +71,6 @@ struct _R {
 
     /// Image `animal4`.
     var animal4: RswiftResources.ImageResource { .init(name: "animal4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `app_icon_1`.
-    var app_icon_1: RswiftResources.ImageResource { .init(name: "app_icon_1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `app_icon_2`.
     var app_icon_2: RswiftResources.ImageResource { .init(name: "app_icon_2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -92,6 +92,18 @@ struct _R {
 
     /// Image `app_icon_8`.
     var app_icon_8: RswiftResources.ImageResource { .init(name: "app_icon_8", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `app_icon_main.jpg`.
+    var app_icon_mainJpg: RswiftResources.ImageResource { .init(name: "app_icon_main.jpg", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
+
+    /// Image `app_icon_main1`.
+    var app_icon_main1: RswiftResources.ImageResource { .init(name: "app_icon_main1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `app_icon_main2`.
+    var app_icon_main2: RswiftResources.ImageResource { .init(name: "app_icon_main2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `app_icon_main3`.
+    var app_icon_main3: RswiftResources.ImageResource { .init(name: "app_icon_main3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `background-main`.
     var backgroundMain: RswiftResources.ImageResource { .init(name: "background-main", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -161,6 +173,9 @@ struct _R {
 
     /// Image `icon_back`.
     var icon_back: RswiftResources.ImageResource { .init(name: "icon_back", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_back_settings`.
+    var icon_back_settings: RswiftResources.ImageResource { .init(name: "icon_back_settings", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `icon_best_offer`.
     var icon_best_offer: RswiftResources.ImageResource { .init(name: "icon_best_offer", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -257,6 +272,27 @@ struct _R {
 
     /// Image `icon_secured`.
     var icon_secured: RswiftResources.ImageResource { .init(name: "icon_secured", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_setting_about`.
+    var icon_setting_about: RswiftResources.ImageResource { .init(name: "icon_setting_about", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_setting_contact`.
+    var icon_setting_contact: RswiftResources.ImageResource { .init(name: "icon_setting_contact", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_setting_email`.
+    var icon_setting_email: RswiftResources.ImageResource { .init(name: "icon_setting_email", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_setting_privacy`.
+    var icon_setting_privacy: RswiftResources.ImageResource { .init(name: "icon_setting_privacy", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_setting_share`.
+    var icon_setting_share: RswiftResources.ImageResource { .init(name: "icon_setting_share", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_setting_term`.
+    var icon_setting_term: RswiftResources.ImageResource { .init(name: "icon_setting_term", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon_star`.
+    var icon_star: RswiftResources.ImageResource { .init(name: "icon_star", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `image_categories`.
     var image_categories: RswiftResources.ImageResource { .init(name: "image_categories", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -402,7 +438,7 @@ struct _R {
     }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 9 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 11 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
@@ -432,6 +468,12 @@ struct _R {
 
     /// Resource file `SF-Pro-Text-Semibold.ttf`.
     var sfProTextSemiboldTtf: RswiftResources.FileResource { .init(name: "SF-Pro-Text-Semibold", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `app_icon_1.png`.
+    var app_icon_1Png: RswiftResources.FileResource { .init(name: "app_icon_1", pathExtension: "png", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `app_icon_main.jpg`.
+    var app_icon_mainJpg: RswiftResources.FileResource { .init(name: "app_icon_main", pathExtension: "jpg", bundle: bundle, locale: LocaleReference.none) }
   }
 
   /// This `_R.storyboard` struct is generated, and contains static references to 1 storyboards.

@@ -90,10 +90,10 @@ class OBViewController: UIViewController{
             guard let dsData = self.ds else { return }
             
             switch dsData.version {
-            case "directstore_ver1" :
+            case Directstore.directstore_ver1.rawValue :
                 let view = DSViewController()
                 navigationController?.pushViewController(view, animated: true)
-            case "directstore_ver2" :
+            case Directstore.directstore_ver2.rawValue :
                 let view = DS2ViewController()
                 navigationController?.pushViewController(view, animated: true)
             default: break
